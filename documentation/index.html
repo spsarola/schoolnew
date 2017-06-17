@@ -1,0 +1,426 @@
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+    <meta charset="utf-8">
+	<title>ICAN School Handler - Complete School Management System</title>
+ 	<meta name="description" content="ICAN School handler is a powerful school management system that is designed with the aim to manage the school records with ease. The responsible layout allows you to use in desktop as well as tablet and mobile. It can be run offline or online.
+It covers maximum modules that can a school have. The reports can be customized, printed.">
+	<meta name="author" content="Vinay Kesharwani">
+	<meta name="copyright" content="Vinay Kesharwani">
+	<meta name="generator" content="Documenter v2.0 http://rxa.li/documenter">
+	<meta name="date" content="2014-09-25T00:00:00+02:00">
+	
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+	
+    <link href="assets/css/bootstrap.css" rel="stylesheet">
+    <link href="assets/js/google-code-prettify/prettify.css" rel="stylesheet">
+    <link href="assets/css/bootstrap-responsive.css" rel="stylesheet">
+    <link href="assets/css/documenter_style.css" rel="stylesheet">
+    <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    
+	
+	<style>
+		html, body{background-color:#FFFFFF;color:#383838;}
+		h1,h2,h3,h4,h5,h6{color:#383838;}
+		section table{background-color:#FFFFFF;}
+		::-moz-selection{background:#444444;color:#DDDDDD;}
+		::selection{background:#444444;color:#DDDDDD;}
+		a.brand{background-image:url();}
+		a, a:hover, a:active{color:#0000FF;}
+		hr{border-top:1px solid #EBEBEB;border-bottom:1px solid #FFFFFF;}
+		div.navbar-inner, .navbar .nav li ul{background:#DDDDDD;color:#222222;}
+		a.btn-navbar{background:#DDDDDD;color:#222222;}
+		.navbar .nav li a{color:#222222;text-shadow:1px 1px 0px #EEEEEE;}
+		.navbar .nav li a:hover, .navbar .nav li.active a{text-shadow:none;}
+		div.navbar-inner ul{}
+		.marketing-byline{color:#FFFFFF;}
+		.navbar .nav > li a{color:#444444;}
+		.navbar .nav > li a:hover, a.btn-navbar:hover{background:#444444;color:#DDDDDD;}
+		.navbar .nav .active > a, .navbar .nav .active > a:hover, a.btn-navbar:active{background-color:#444444;color:#DDDDDD;}
+		.navbar .nav li ul li a:hover{background:#444444;color:#DDDDDD;}
+		.navbar .nav li ul li a:active{background:#444444;color:#DDDDDD;}
+		.btn-primary {
+			  background-image: -moz-linear-gradient(top, #0088CC, #0044CC);
+			  background-image: -ms-linear-gradient(top, #0088CC, #0044CC);
+			  background-image: -webkit-gradient(linear, 0 0, 0 0088CC%, from(#DDDDDD), to(#0044CC));
+			  background-image: -webkit-linear-gradient(top, #0088CC, #0044CC);
+			  background-image: -o-linear-gradient(top, #0088CC, #0044CC);
+			  background-image: linear-gradient(top, #0088CC, #0044CC);
+			  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#0088CC', endColorstr='#0044CC', GradientType=0);
+			  border-color: #0044CC #0044CC #bfbfbf;
+			  color:#FFFFFF;
+		}
+		.btn-primary:hover,
+		.btn-primary:active,
+		.btn-primary.active,
+		.btn-primary.disabled,
+		.btn-primary[disabled] {
+		  background-color: #0044CC;
+		}
+		#documenter_copyright{display:block !important;visibility:visible !important;}
+	</style>
+	
+	
+	
+    </head>
+    
+<body class="documenter-project-ican-school-handler" data-spy="scroll" id="top">
+
+<!-- Documentation Navbar -->
+
+<div class="navbar navbar-fixed-top">
+	<div class="navbar-inner">
+		<div class="container"> 
+			<a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse"> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span> </a> 
+			<a class="brand" href="#">ICAN School Handler - Complete School Management System</a>
+			<div class="nav-collapse">
+			<ul class="nav">
+			
+			<li><a href="#installation" title="Installation">Installation</a></li>
+			<li><a href="#setting" title="Setting">Setting</a></li>
+			<li><a href="#dashboard" title="Dashboard:">Dashboard:</a></li>
+			<li><a href="#enquiry" title="Enquiry">Enquiry</a></li>
+			<li><a href="#call_other_call" title="Call/Other Call">Call/Other Call</a></li>
+			<li><a href="#complaint" title="Complaint:">Complaint:</a></li>
+			<li><a href="#registration" title="Registration">Registration</a></li>
+			<li><a href="#admission" title="Admission:">Admission:</a></li>
+			<li><a href="#promotion" title="Promotion">Promotion</a></li>
+			<li><a href="#payment" title="Payment:">Payment:</a></li>
+			<li><a href="#staff" title="Staff:">Staff:</a></li>
+			<li><a href="#attendance" title="Attendance">Attendance</a></li>
+			<li><a href="#academic_marks" title="Academic marks">Academic marks</a></li>
+			<li><a href="#co_scholastic_marks" title="Co-scholastic Marks">Co-scholastic Marks</a></li>
+			<li><a href="#report_card" title="Report Card">Report Card</a></li>
+			<li><a href="#income_report" title="Income Report">Income Report</a></li>
+			<li><a href="#expense" title="Expense:">Expense:</a></li>
+			<li><a href="#transport" title="Transport">Transport</a></li>
+			<li><a href="#library" title="Library:">Library:</a></li>
+			<li><a href="#stock" title="Stock">Stock</a></li>
+			<li><a href="#language" title="Stock">Language Setting</a></li>
+			<li><a href="#versionhistory" title="Stock">Version History</a></li>
+
+			</ul>
+			</div>
+		</div>
+	</div>
+</div> <!-- End of Navbar -->
+
+<!-- Main Container Beginning -->			
+			
+<div class="container" id="documenter_content">
+    
+	<div id="documenter-cover">
+	<div class="masthead">
+	<br><Br><br><center><img src="assets/img/Header.jpg"></center>
+	    <h1>ICAN School Handler - Complete School Management System</h1>
+	    <p>ICAN School handler is a powerful school management system that is designed with the aim to manage the school records with ease. The responsible layout allows you to use in desktop as well as tablet and mobile. It can be run offline or online.
+It covers maximum modules that can a school have. The reports can be customized, printed.
+<br><br>
+It can be operated in different levels. Various types of user can access it. The masteruser has the permission to set permission for other user. Master user can also track record of their user.
+<br><br>
+<b>URL : school.myraipur.com<br><br>
+<big>Master User</big><br>
+Demo username : masteruser<br>
+Demo password : 123456<br><br>
+
+<big>Parents</big><br>
+Demo username : 1@parents (Admission Id of student with '@parents')<br>
+Demo password : 123456<br><br>
+
+<big>Students</big><br>
+Demo username : 1@student (Admission Id of student with '@student')<br>
+Demo password : 123456<br><br>
+</b>
+You can run the software offline or online.</p>
+	    <ul class="marketing-byline">
+			<li>created: 09/25/2014</li>
+			<li>latest update: 09/25/2014</li>
+			<li>by: Vinay Kesharwani</li>
+			<li><a href=""></a></li>
+		</ul>
+	    <p class="download-info">
+			
+		</p>
+		
+	</div> <!-- masthead -->
+	
+	</div>
+      
+<section id="installation">
+	<div class="page-header"><h3>How to install??</h3><hr class="notop"></div>
+<p>Follow steps to install this app:</p>
+	<ul>
+		<li>Copy all the files and folders in server.</li>
+		<li>Set the base url in "Config.php" and ".htaccess" file. <br>
+		<code>
+		Example:<br> .htaccess file if it is to be installed in subfolder<br>
+		RewriteBase /school/ <br>
+		Config.php file  if it is to be installed in subfolder<br>
+		&lt;base href="http://app.myraipur.com/school/" /&gt;
+		
+		<br><br> .htaccess file if it is to be installed in root folder<br>
+		RewriteBase / <br>
+		Config.php file  if it is to be installed in root folder<br>
+		&lt;base href="http://app.myraipur.com/" /&gt;
+		</code></li>
+		<li>Open Config.php file and set your database name, servername, password. Also set the number of digit a mobile number & landline number can have.</li>
+		<li>Create a database with above name, import the sql file located in database folder.</li>
+	</ul>
+<p>Pre Requisite for ICAN School Handler:</p>
+	<ul>
+		<li>You must enable apache rewrite module. For online version, ask your hosting provider to enable rewrite module. For offline version, go to your httpd.conf file, uncomment the line "LoadModule rewrite_module modules/mod_rewrite.so" and restart your server.</li>
+	</ul>
+</section>
+  <section id="setting">
+	<div class="page-header"><h3>Setting</h3><hr class="notop"></div>
+<p>
+	Under this tab you can perform various setting related to this software. It includes following sub menus:</p>
+<ul>
+	<li>
+		General Setting</li>
+	<li>
+		Master Entry</li>
+	<li>
+		Manage User</li>
+	<li>
+		Manage Accounts</li>
+	<li>
+		Manage Class &amp; Sections</li>
+	<li>
+		Manage User</li>
+	<li>
+		Manage Exam</li>
+	<li>
+		Manage Subject</li>
+	<li>
+		Manage SC Area</li>
+	<li>
+		Manage SC Indicator</li>
+	<li>
+		Set Fee</li>
+	<li>
+		Salary Head</li>
+	<li>
+		Salary Structure</li>
+	<li>
+		School Material</li>
+	<li>
+		Manage Location</li>
+	<li>
+		Header &amp; Footer</li>
+	<li>
+		Permission</li>
+</ul>
+<center><img src="assets/img/Setting.png"></center>
+</section>
+<section id="dashboard">
+	<div class="page-header"><h3>Dashboard:</h3><hr class="notop"></div>
+<p>
+	This shows the menu on the left, academic calendar on the the right and some graphical charts on the middle. It is the homepage of ICAN school handler. You can get the graphical chart report for a particular period of time. You just set the number of days the report to be shown in the right hand side of the text box &amp; system will fetch all the details for that period for you.</p>
+<center><img src="assets/img/Dashboard.png"></center>
+</section>
+<section id="enquiry">
+	<div class="page-header"><h3>Enquiry</h3><hr class="notop"></div>
+<p>
+	You can add/update/delete enquiry details in this module. Few master entry to be complete before proceeding to this module like Enquiry Type, Reference &amp; Response we get from the enquiry.</p>
+<center><img src="assets/img/Enquiry.png"></center>
+</section>
+<section id="call_other_call">
+	<div class="page-header"><h3>Call/Other Call</h3><hr class="notop"></div>
+<p>
+	This module is used to generate leads for admission. Any call made from the school can be saved in this module. Few details which are required to enter are name of the person you are calling, date of call, call duration &amp; response collected from the person.</p>
+<center><img src="assets/img/Call.png"></center>
+</section>
+<section id="complaint">
+	<div class="page-header"><h3>Complaint:</h3><hr class="notop"></div>
+<p>
+	It is used to enter the complaint from parents, students. The rich text field enables you to enter the complaint detail and action taken againts the complaint. You can update/delete the complaint as per your requirement.</p>
+<center><img src="assets/img/Complaint.png"></center>
+</section>
+<section id="registration">
+	<div class="page-header"><h3>Registration</h3><hr class="notop"></div>
+<p>
+	Its a kind of form entered once when a students enrolled in your school. Various details are requierd like name,father name,mother name,address,class,session,father&#39;s occupation etc for every students. Students once registered becomes available for admission and promotion.</p>
+<center><img src="assets/img/Registration.png"></center>
+</section>
+<section id="admission">
+	<div class="page-header"><h3>Admission:</h3><hr class="notop"></div>
+<p>
+	To complete the admission process, you have to navigate to admission tab. You have to select the enrolled students who is not admitted yet, set the fee structure for the students and then complete the admission process. Student once admitted will be available for other modules like library, fee payment, transport etc.</p>
+<center><img src="assets/img/Admission.png"></center>
+</section>
+<section id="promotion">
+	<div class="page-header"><h3>Promotion</h3><hr class="notop"></div>
+<p>
+	After an academic year, multiple students can be promoted to next class at a single click. You just have to select the class of which students to be promoted, next class to be promoted and the next session.</p>
+<center><img src="assets/img/Promotion.png"></center>
+</section>
+<section id="payment">
+	<div class="page-header"><h3>Payment:</h3><hr class="notop"></div>
+<p>
+	This module is used to enter the fee detail of a student. Since you can set different fee structure for different students, fee payment varies from students to students. You have to select the student then the fee structure of that student is shown in the table. Now you can choose which fee head you want to pay and also you can generate receipt for the same. Every receipt has a unique receipt number which will be used to uniquely identify the receipt.</p>
+<center><img src="assets/img/Payment.png"></center>
+</section>
+<section id="staff">
+	<div class="page-header"><h3>Staff:</h3><hr class="notop"></div>
+<p>
+	Teaching &amp; non-teaching staff detail can be managed in this module. Various details of a staff like name,mobile,address,date of birth,date of joining,email,their salary structure,salary payment can be managed in this module. Every staff gets a staff id which is used to uniquely identify that staff. Staff once enrolled becomes active. If he/she quits you can update its status to sleep mode. You can also filter/print the detail of any staff as per your requirement.</p>
+<center><img src="assets/img/Staff.png"></center>
+</section>
+<section id="attendance">
+	<div class="page-header"><h3>Attendance</h3><hr class="notop"></div>
+<p>
+	You can save staff as well as students attendance in this module. The interface is designed in such a way that you can save attendance of multiple staff and students in just a click. You dont have to select staff/student one by one. Various colors in the attendance report show the different attendance of the student/staff.</p>
+<center><img src="assets/img/Attendance.png"></center>
+<center><img src="assets/img/SAttendance.png"></center>
+</section>
+<section id="academic_marks">
+	<div class="page-header"><h3>Academic marks</h3><hr class="notop"></div>
+<div>
+	Subject marks entry can be done for various exam in this module. You can schedule various types of exam for different classes and save marks for every students. Marks can be saved for a complete class with one click. This saves a lot of time to enter the marks detail of that student.</div>
+<div>
+	You can also set the maximum marks, the subject being offered for exam, exam type, activity type etc detail in this module.</div>
+<center><img src="assets/img/Marks.png"></center>
+</section>
+<section id="co_scholastic_marks">
+	<div class="page-header"><h3>Co-scholastic Marks</h3><hr class="notop"></div>
+<p>
+	The co-scholastic marks can be entered by this module. Once the class is selected, it shows all the students enrolled in that class. Various co-scholastic parameters can be set as per requirement and saved for different students.</p>
+<center><img src="assets/img/CMarks.png"></center>
+</section>
+<section id="report_card">
+	<div class="page-header"><h3>Report Card</h3><hr class="notop"></div>
+<p>
+	Report card module saves much of your time. Once you enter students scholastic &amp; co-scholastic marks detail, you can generate the student report cards. The marks detail can be used to analyze the performance of the students.</p>
+<center><img src="assets/img/Report.png"></center>
+</section>
+<section id="income_report">
+	<div class="page-header"><h3>Income Report</h3><hr class="notop"></div>
+<p>
+	Shows all the income collected at your account department. Every income can have different income heads based on its nature. You can update/delete the income if required.</p>
+<center><img src="assets/img/Income.png"></center>
+</section>
+<section id="expense">
+	<div class="page-header"><h3>Expense:</h3><hr class="notop"></div>
+<p>
+	Every school has lots of expense. To enter all the expense detail, use this module. You can categorized your expenses in different heads. Also different accounts can be used to manage the expense. Payment can be made same time or it can be post paid in nature. Every payment, expenses are reversible in nature. You can delete any expense/payment.</p>
+<center><img src="assets/img/Expense.png"></center>
+</section>
+<section id="transport">
+	<div class="page-header"><h3>Transport</h3><hr class="notop"></div>
+<p>
+	It can be used to manage the vehicle reading, vehicle fuel, vehicle documents. You can also create route for your students and get all the report printed.</p>
+<center><img src="assets/img/Transport.png"></center>
+</section>
+<section id="library">
+	<div class="page-header"><h3>Library:</h3><hr class="notop"></div>
+<div>
+	This is used to issue/return the books available in the school library. It can store the details of unlimited number of books. Every book has a unique identifier. You can issue a book to enrolled students or staff. You can also track the record of the books issued/returned.</div>
+<div>
+	&nbsp;</div>
+<center><img src="assets/img/Library.png"></center>
+</section>
+<section id="stock">
+	<div class="page-header"><h3>Stock</h3><hr class="notop"></div>
+<p>
+	Used to track the records of stock available in your school. Every stock purchase, stock transfer can be managed in this module. Printable reports are available for stock module.</p>
+<center><img src="assets/img/Stock.png"></center>
+</section>
+<section id="language">
+	<div class="page-header"><h3>Language Setting</h3><hr class="notop"></div>
+<p>Now you can use School handler in you own language. You can add any language you want. Go to language tab.
+<center><img src="assets/img/Language.png"></center>
+To add new language: <br><Br>
+<ul>
+	<li> Go to language page, enter language name in language box and save.</li>
+</ul>
+
+To add new phrases: <br><Br>
+<ul>
+	<li> Go to language page, enter phrase name in phrase box and save.</li>
+	<li> On translation box, add translation of that phrase and save the translation.</li>
+	<li> Now go to that phrase you are displaying in any page, put following php code in place of that phrase <Br>
+		<code> echo Translate('Phrase Name'); </code> </li>
+</ul>
+</p>
+	
+</section>
+<section id="versionhistory">
+	<div class="page-header"><h3>Version History</h3><hr class="notop"></div>
+	<h4>Whats New in Version 1.2.1??</h4>
+	<ul>
+		<li>Install it in any subfolder. Initially it was designed to run from root folder only. Now you can 
+		install and run it from any folder. For this, you just have to set base folder in "Template/HTML.php" and ".htaccess" file.</li>
+	</ul>
+	<h4>Whats New in Version 1.2??</h4>
+	<ul>
+		<li>Changed mysql to mysqli</li>
+	</ul>
+	<h4>How to upgrade from 1.1 to 1.2??</h4>
+	<ul>
+		<li>Copy and replace all the old file with new ones</li>
+	</ul>
+	<h4>Whats New in Version 1.1??</h4>
+	<ul>
+		<li>Parents & Students Login</li>
+		<li>Circular Add/Update/Delete</li>
+		<li>Minor bugs fixed</li>
+	</ul>
+	<h4>How to upgrade from 1.0 to 1.1??</h4>
+	<ul>
+		<li>Add 2 news fields in registration table with following sql query<br><br>
+		<code>
+		ALTER TABLE  'registration' ADD  'ParentsPassword' VARCHAR( 100 ) NOT NULL AFTER  'Username' ,<br>
+		ADD  'StudentsPassword' VARCHAR( 100 ) NOT NULL AFTER  'ParentsPassword' ;
+		</code>
+		</li>
+		<li><b>Optional</b> : If you already have data in registration table then run following query <br><br>
+		<code>
+		UPDATE TABLE set ParentsPassword='123456',StudentsPassword='123456'
+		</code>
+		</li>
+		<li>Create new table circular. Structure is given below:<br><br>
+		<code>
+		CREATE TABLE 'circular' ( <br>
+		  'CircularId' int(11) NOT NULL auto_increment,<br>
+		  'Title' varchar(10000) NOT NULL,<br>
+		  'Circular' text NOT NULL,<br>
+		  'DateReleased' varchar(10) NOT NULL,<br>
+		  'CircularStatus' varchar(10) NOT NULL,<br>
+		  'Username' varchar(100) NOT NULL,<br>
+		  PRIMARY KEY  ('CircularId')
+		)
+		</code>
+		</li>
+		<li>Copy & Paste all the files</li>
+	</ul>
+
+</section>
+
+
+
+    <hr />
+
+<footer>
+    <p>Copyright Vinay Kesharwani 2014 made with the <a href="http://rxa.li/documenter">Documenter v2.0</a></p>
+</footer>
+
+</div><!-- /container --> 
+
+<!-- Le javascript
+    ================================================== --> 
+<!-- Placed at the end of the document so the pages load faster --> 
+<script>document.createElement('section');var duration='500',easing='swing';</script>
+<script src="assets/js/jquery.js"></script> 
+<script src="assets/js/jquery.scrollTo.js"></script>
+<script src="assets/js/jquery.easing.js"></script>
+<script src="assets/js/scripts.js"></script> 
+<script src="assets/js/google-code-prettify/prettify.js"></script> 
+<script src="assets/js/bootstrap-min.js"></script> 
+</body>
+</html>
