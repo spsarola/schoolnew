@@ -415,7 +415,18 @@ global $CONNECTION;
 function GetRandomColor()
 {
 	$rand = array('0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'a', 'b', 'c', 'd', 'e', 'f');
-    $color = '#'.$rand[rand(0,15)].$rand[rand(0,15)].$rand[rand(0,15)].$rand[rand(0,15)].$rand[rand(0,15)].$rand[rand(0,15)];
+        $color = '#'.$rand[rand(0,15)].$rand[rand(0,15)].$rand[rand(0,15)].$rand[rand(0,15)].$rand[rand(0,15)].$rand[rand(0,15)];
 	return($color);
+}
+
+if(!function_exists('FilterSqlInjection')){
+//    include("Config.php");
+
+    function FilterSqlInjection(&$value,$key,$CONNECTION,$filter_not_apply=array()){
+        if(!in_array($key, $filter_not_apply)){
+            $value=mysqli_real_escape_string($CONNECTION,htmlspecialchars(trim($value)));
+        }
+    }
+    
 }
 ?>
