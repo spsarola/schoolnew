@@ -188,6 +188,7 @@ elseif ($Action == "ChangePassword") {
 }
 ///////////////////////////////////////////////////////////////////////////////////////////
 elseif ($Action == "MasterEntryCategory") {
+    array_walk($_POST, "FilterSqlInjection");
     $MasterEntryCategoryValue = $_POST['MasterEntryCategoryValue'];
     $MasterEntryCategoryName = $_POST['MasterEntryCategoryName'];
     $Permission = $_POST['Permission'];
@@ -215,6 +216,7 @@ elseif ($Action == "MasterEntryCategory") {
 }
 ///////////////////////////////////////////////////////////////////////////////////////////
 elseif ($Action == "MasterEntry") {
+    array_walk($_POST, "FilterSqlInjection");
     $MasterEntryValue = $_POST['MasterEntryValue'];
     $MasterEntryName = $_POST['MasterEntryName'];
     $MasterEntryId = $_POST['MasterEntryId'];
@@ -277,6 +279,7 @@ elseif ($Action == "MasterEntry") {
 }
 ///////////////////////////////////////////////////////////////////////////////////////////
 elseif ($Action == "ManageAccounts") {
+    array_walk($_POST, "FilterSqlInjection");   
     $AccountName = $_POST['AccountName'];
     $AccountType = $_POST['AccountType'];
     $AccountTypeName = GetCategoryValueOfId($AccountType, 'AccountType');
@@ -360,6 +363,7 @@ elseif ($Action == "ManageAccounts") {
 }
 ///////////////////////////////////////////////////////////////////////////////////////////
 elseif ($Action == "ManageClass") {
+    array_walk($_POST, "FilterSqlInjection");
     $ClassName = $_POST['ClassName'];
     $ClassId = $_POST['ClassId'];
 
@@ -417,6 +421,7 @@ elseif ($Action == "ManageClass") {
 }
 ///////////////////////////////////////////////////////////////////////////////////////////
 elseif ($Action == "ManageSection") {
+    array_walk($_POST, "FilterSqlInjection");
     $SectionName = $_POST['SectionName'];
     $ClassId = $_POST['ClassId'];
     $SectionId = $_POST['SectionId'];
@@ -475,6 +480,7 @@ elseif ($Action == "ManageSection") {
 }
 ///////////////////////////////////////////////////////////////////////////////////////////
 elseif ($Action == "ManageSubject") {
+    array_walk($_POST, "FilterSqlInjection");
     $SubjectName = $_POST['SubjectName'];
     $SubjectAbb = $_POST['SubjectAbb'];
     $SubjectId = $_POST['SubjectId'];
@@ -589,6 +595,7 @@ elseif ($Action == "StudentRegistration") {
 }
 ///////////////////////////////////////////////////////////////////////////////////////////
 elseif ($Action == "ManageFee") {
+    array_walk($_POST, "FilterSqlInjection");
     $FeeType = $_POST['FeeType'];
     $Amount = $_POST['Amount'];
     $SectionId = $_POST['SectionId'];
@@ -674,6 +681,7 @@ elseif ($Action == "ManageFee") {
 }
 ///////////////////////////////////////////////////////////////////////////////////////////
 elseif ($Action == "AdmissionConfirm") {
+    array_map($_POST, "FilterSqlInjection");
     $RegistrationId = $_POST['RegistrationId'];
     $SectionId = $_POST['SectionId'];
     $DOA = $_POST['DOA'];
@@ -731,6 +739,7 @@ elseif ($Action == "AdmissionConfirm") {
 }
 ///////////////////////////////////////////////////////////////////////////////////////////
 elseif ($Action == "ManageExam") {
+    array_map($_POST, "FilterSqlInjection");
     $ExamId = $_POST['ExamId'];
     $ExamName = $_POST['ExamName'];
     $SectionId = $_POST['SectionId'];
@@ -790,6 +799,7 @@ elseif ($Action == "ManageExam") {
 }
 ///////////////////////////////////////////////////////////////////////////////////////////
 elseif ($Action == "ManageVehicle") {
+    array_map($_POST, "FilterSqlInjection");
     $VehicleId = $_POST['VehicleId'];
     $VehicleName = $_POST['VehicleName'];
     $VehicleNumber = $_POST['VehicleNumber'];
@@ -848,6 +858,7 @@ elseif ($Action == "ManageVehicle") {
 }
 ///////////////////////////////////////////////////////////////////////////////////////////
 elseif ($Action == "ManageFuel") {
+    array_map($_POST, "FilterSqlInjection");
     $VehicleId = $_POST['FuelVehicleId'];
     $FuelId = $_POST['FuelId'];
     $Quantity = $_POST['Quantity'];
@@ -911,6 +922,7 @@ elseif ($Action == "ManageFuel") {
 }
 ///////////////////////////////////////////////////////////////////////////////////////////
 elseif ($Action == "ManageVehicleReading") {
+    array_map($_POST, "FilterSqlInjection");
     $VehicleId = $_POST['ReadingVehicleId'];
     $VehicleReadingId = $_POST['VehicleReadingId'];
     $Reading = $_POST['Reading'];
@@ -998,6 +1010,7 @@ elseif ($Action == "ManageVehicleReading") {
 }
 ///////////////////////////////////////////////////////////////////////////////////////////
 elseif ($Action == "ManageStaff") {
+    array_map($_POST, "FilterSqlInjection");
     $StaffPosition = $_POST['StaffPosition'];
     $StaffName = $_POST['StaffName'];
     $StaffMobile = $_POST['StaffMobile'];
@@ -1034,6 +1047,7 @@ elseif ($Action == "ManageStaff") {
 }
 ///////////////////////////////////////////////////////////////////////////////////////////
 elseif ($Action == "ManageVehicleRoute") {
+    array_map($_POST, "FilterSqlInjection");
     $VehicleId = $_POST['VehicleRouteVehicleId'];
     $Route = $_POST['Route'];
     $VehicleRouteName = $_POST['VehicleRouteName'];
@@ -1124,6 +1138,7 @@ elseif ($Action == "ManageVehicleRoute") {
 }
 ///////////////////////////////////////////////////////////////////////////////////////////
 elseif ($Action == "ManageVehicleRouteDetail") {
+    array_map($_POST, "FilterSqlInjection");
     $RouteStoppageId = isset($_POST['RouteStoppageId']) ? $_POST['RouteStoppageId'] : '';
     $AdmissionId = isset($_POST['AdmissionId']) ? $_POST['AdmissionId'] : '';
     $VehicleRouteId = isset($_POST['VehicleRouteId']) ? $_POST['VehicleRouteId'] : '';
@@ -1272,6 +1287,7 @@ elseif ($Action == "ManageVehicleRouteDetail") {
 }
 ///////////////////////////////////////////////////////////////////////////////////////////
 elseif ($Action == "ExamSetup") {
+    array_map($_POST, "FilterSqlInjection");
     $ExamId = $_POST['ExamId'];
     $ExamActivityName = $_POST['ExamActivityName'];
     $ExamActivityType = $_POST['ExamActivityType'];
@@ -1331,6 +1347,7 @@ elseif ($Action == "ExamSetup") {
 }
 ///////////////////////////////////////////////////////////////////////////////////////////
 elseif ($Action == "MarksSetup") {
+    array_map($_POST, "FilterSqlInjection");
     $ExamId = $_POST['ExamId'];
     $SubjectId = $_POST['SubjectId'];
 
@@ -1394,6 +1411,7 @@ elseif ($Action == "MarksSetup") {
 }
 ///////////////////////////////////////////////////////////////////////////////////////////
 elseif ($Action == "ManageCall") {
+    array_map($_POST, "FilterSqlInjection");
     $Name = $_POST['Name'];
     $Landline = $_POST['Landline'];
     $CallResponse = $_POST['CallResponse'];
@@ -1458,6 +1476,7 @@ elseif ($Action == "ManageCall") {
 }
 ///////////////////////////////////////////////////////////////////////////////////////////
 elseif ($Action == "ManageOCall") {
+    array_map($_POST, "FilterSqlInjection");
     $Name = $_POST['Name'];
     $CallDuration = $_POST['CallDuration'];
     $Landline = $_POST['Landline'];
@@ -1516,6 +1535,7 @@ elseif ($Action == "ManageOCall") {
 }
 ///////////////////////////////////////////////////////////////////////////////////////////
 elseif ($Action == "ManageFollowUp") {
+    array_map($_POST, "FilterSqlInjection");
     $ResponseDetail = mynl2br($_POST['ResponseDetail']);
     $Remarks = mynl2br($_POST['Remarks']);
     $DOF = $_POST['DOF'];
@@ -1575,6 +1595,7 @@ elseif ($Action == "ManageFollowUp") {
 }
 ///////////////////////////////////////////////////////////////////////////////////////////
 elseif ($Action == "ManageCalendar") {
+    array_map($_POST, "FilterSqlInjection");
     $StartTime = $_POST['StartTime'];
     $EndTime = $_POST['EndTime'];
     $Color = $_POST['Color'];
@@ -1644,6 +1665,7 @@ elseif ($Action == "ManageCalendar") {
 }
 ///////////////////////////////////////////////////////////////////////////////////////////
 elseif ($Action == "ManageCircular") {
+    array_map($_POST, "FilterSqlInjection");
     $Title = $_POST['Title'];
     $Circular = $_POST['Circular'];
     $CircularId = $_POST['CircularId'];
@@ -1710,6 +1732,7 @@ elseif ($Action == "ManageCircular") {
 }
 ///////////////////////////////////////////////////////////////////////////////////////////
 elseif ($Action == "ManageEnquiry") {
+    array_map($_POST, "FilterSqlInjection");
     $EnquiryType = $_POST['EnquiryType'];
     $Reference = $_POST['Reference'];
     $Name = $_POST['Name'];
@@ -1771,7 +1794,7 @@ elseif ($Action == "ManageEnquiry") {
 }
 ///////////////////////////////////////////////////////////////////////////////////////////
 elseif ($Action == "ManageStudentProfile") {
-    array_walk($_POST, "FilterSqlInjection",$CONNECTION);
+    array_walk($_POST, "FilterSqlInjection");
     
     $StudentName = $_POST['UpdateStudentName'];
     $FatherName = $_POST['UpdateFatherName'];
@@ -1830,6 +1853,7 @@ elseif ($Action == "ManageStudentProfile") {
 }
 ///////////////////////////////////////////////////////////////////////////////////////////
 elseif ($Action == "ManageStudentContact") {
+    array_map($_POST, "FilterSqlInjection");
     $Mobile = $_POST['Mobile'];
     $Landline = $_POST['Landline'];
     $AlternateMobile = $_POST['AlternateMobile'];
@@ -1869,6 +1893,7 @@ elseif ($Action == "ManageStudentContact") {
 }
 ///////////////////////////////////////////////////////////////////////////////////////////
 elseif ($Action == "ManageParentsContact") {
+    array_map($_POST, "FilterSqlInjection");
     $RegistrationId = $_POST['RegistrationId'];
     $FatherDateOfBirth = $_POST['FatherDateOfBirth'];
     $FatherEmail = $_POST['FatherEmail'];
@@ -1906,6 +1931,7 @@ elseif ($Action == "ManageParentsContact") {
 }
 ///////////////////////////////////////////////////////////////////////////////////////////
 elseif ($Action == "ManageQualification") {
+    array_map($_POST, "FilterSqlInjection");
     $QualificationType = $_POST['QualificationType'];
     $UniqueId = $_POST['UniqueId'];
     $BoardUniversity = $_POST['BoardUniversity'];
@@ -1942,6 +1968,7 @@ elseif ($Action == "ManageQualification") {
 }
 ///////////////////////////////////////////////////////////////////////////////////////////
 elseif ($Action == "ManageSiblingInformation") {
+    array_map($_POST, "FilterSqlInjection");
     $SName = $_POST['SName'];
     $SDOB = $_POST['SDOB'];
     $SClass = $_POST['SClass'];
@@ -1972,6 +1999,7 @@ elseif ($Action == "ManageSiblingInformation") {
 }
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////
 elseif ($Action == "ManagePhotos") {
+    array_map($_POST, "FilterSqlInjection");
     $Title = $_POST['Title'];
     $Detail = $_POST['Detail'];
     $Resolution = $_POST['Resolution'];
@@ -2068,6 +2096,7 @@ elseif ($Action == "ManagePhotos") {
 }
 ///////////////////////////////////////////////////////////////////////////////////////////
 elseif ($Action == "ManageDRRegister") {
+    array_map($_POST, "FilterSqlInjection");
     $Reference = $_POST['Reference'];
     $Title = $_POST['Title'];
     $D = $_POST['D'];
@@ -2139,6 +2168,7 @@ elseif ($Action == "ManageDRRegister") {
 }
 ///////////////////////////////////////////////////////////////////////////////////////////
 elseif ($Action == "ManageComplaint") {
+    array_map($_POST, "FilterSqlInjection");
     $Name = $_POST['Name'];
     $Mobile = $_POST['Mobile'];
     $DOC = $_POST['DOC'];
@@ -2209,6 +2239,7 @@ elseif ($Action == "ManageComplaint") {
 }
 ///////////////////////////////////////////////////////////////////////////////////////////
 elseif ($Action == "ManageVisitorBook") {
+    array_map($_POST, "FilterSqlInjection");
     $Name = $_POST['Name'];
     $Mobile = $_POST['Mobile'];
     $InDateTime = $_POST['InDateTime'];
@@ -2279,6 +2310,7 @@ elseif ($Action == "ManageVisitorBook") {
 }
 ///////////////////////////////////////////////////////////////////////////////////////////
 elseif ($Action == "ManageStaffProfile") {
+    array_map($_POST, "FilterSqlInjection");
     $StaffPosition = $_POST['StaffPositionDetail'];
     $StaffName = $_POST['StaffNameDetail'];
     $StaffMobile = $_POST['StaffMobileDetail'];
@@ -2332,6 +2364,7 @@ elseif ($Action == "ManageStaffProfile") {
 }
 ///////////////////////////////////////////////////////////////////////////////////////////
 elseif ($Action == "ManageSalaryHead") {
+    array_map($_POST, "FilterSqlInjection");
     $SalaryHead = $_POST['SalaryHead'];
     $Code = $_POST['Code'];
     $SalaryHeadId = $_POST['SalaryHeadId'];
@@ -2413,6 +2446,7 @@ elseif ($Action == "ManageSalaryHead") {
 }
 ///////////////////////////////////////////////////////////////////////////////////////////
 elseif ($Action == "ManageSalaryStructureTemplate") {
+    array_map($_POST, "FilterSqlInjection");
     $FixedSalaryHead = $_POST['FixedSalaryHead'];
     $SalaryStructureName = $_POST['SalaryStructureName'];
     $SalaryStructureId = $_POST['SalaryStructureId'];
@@ -2518,6 +2552,7 @@ elseif ($Action == "ManageSalaryStructureTemplate") {
 ///////////////////////////////////////////////////////////////////////////////////////////
 elseif ($Action == "ManageSalaryStructureTemplate2") {
     include("ExpressionValidator.php");
+    array_map($_POST, "FilterSqlInjection");
     $SalaryHead = $_POST['SalaryHead'];
     $SalaryStructureId = $_POST['SalaryStructureId'];
     $Expression = $_POST['Expression'];
@@ -2638,6 +2673,7 @@ elseif ($Action == "ManageSalaryStructureTemplate2") {
 }
 ///////////////////////////////////////////////////////////////////////////////////////////
 elseif ($Action == "ManageUser") {
+    array_map($_POST, "FilterSqlInjection");
     $UserType = $_POST['UserType'];
     $Username = $_POST['Username'];
     $StaffId = $_POST['StaffId'];
@@ -2692,6 +2728,7 @@ elseif ($Action == "ManageUser") {
 }
 ///////////////////////////////////////////////////////////////////////////////////////////
 elseif ($Action == "SetPermission") {
+    array_map($_POST, "FilterSqlInjection");
     $UserType = $_POST['UserType'];
     $PermissionSTR = $_POST['PermissionSTR'];
     $PermissionSTR = implode(",", $PermissionSTR);
@@ -2723,6 +2760,7 @@ elseif ($Action == "SetPermission") {
 }
 ///////////////////////////////////////////////////////////////////////////////////////////
 elseif ($Action == "ManagePage") {
+    array_map($_POST, "FilterSqlInjection");
     $Page = $_POST['Page'];
     $PageNameId = $_POST['PageNameId'];
 
@@ -2763,7 +2801,7 @@ elseif ($Action == "ManagePage") {
 }
 ///////////////////////////////////////////////////////////////////////////////////////////
 elseif ($Action == "ManageTable") {
-    $Table = $_POST['Table'];
+    $Table = Escape(trim($_POST['Table']));
 
     if ($Table != "") {
         $Already = "and TableName!='$Table'";
@@ -2802,6 +2840,7 @@ elseif ($Action == "ManageTable") {
 }
 ///////////////////////////////////////////////////////////////////////////////////////////
 elseif ($Action == "ManageLocation") {
+    array_walk($_POST, "FilterSqlInjection");
     $LocationName = $_POST['LocationName'];
     $CalledAs = $_POST['CalledAs'];
     $LocationId = $_POST['LocationId'];
@@ -2862,6 +2901,7 @@ elseif ($Action == "ManageLocation") {
 }
 ///////////////////////////////////////////////////////////////////////////////////////////
 elseif ($Action == "ManageHeader") {
+    array_walk($_POST, "FilterSqlInjection");
     $HeaderTitle = $_POST['HeaderTitle'];
     $HRType = $_POST['HRType'];
     $HeaderContent = $_POST['HeaderContent'];
@@ -2908,6 +2948,7 @@ elseif ($Action == "ManageHeader") {
 }
 ///////////////////////////////////////////////////////////////////////////////////////////
 elseif ($Action == "Income") {
+    array_walk($_POST, "FilterSqlInjection");
     $IncomeAccountTypeId = $_POST['IncomeAccount'];
     $Amount = $_POST['Amount'];
     $Account = $_POST['Account'];
@@ -2943,6 +2984,7 @@ elseif ($Action == "Income") {
 }
 ///////////////////////////////////////////////////////////////////////////////////////////
 elseif ($Action == "Supplier") {
+    array_walk($_POST, "FilterSqlInjection");
     $SupplierName = $_POST['SupplierName'];
     $SupplierMobile = $_POST['SupplierMobile'];
     $SupplierRemarks = $_POST['SupplierRemarks'];
@@ -3005,6 +3047,7 @@ elseif ($Action == "Supplier") {
 }
 ///////////////////////////////////////////////////////////////////////////////////////////
 elseif ($Action == "Expense") {
+    array_walk($_POST, "FilterSqlInjection");
     $ExpenseAccountType = $_POST['ExpenseAccountType'];
     $ExpenseAccountTypeId = $_POST[$ExpenseAccountType];
     $SupplierId = $_POST['SupplierId'];
@@ -3074,6 +3117,7 @@ elseif ($Action == "Expense") {
 }
 ///////////////////////////////////////////////////////////////////////////////////////////
 elseif ($Action == "ExpenseMakePayment") {
+    array_walk($_POST, "FilterSqlInjection");
     $AmountPaid = $_POST['RemainingAmountPaid'];
     $Account = $_POST['RemainingAccount'];
     $DOP = $_POST['RemainingDOP'];
@@ -3126,6 +3170,7 @@ elseif ($Action == "ExpenseMakePayment") {
 }
 ///////////////////////////////////////////////////////////////////////////////////////////
 elseif ($Action == "PromotionConfirm") {
+    array_walk($_POST, "FilterSqlInjection");
     $SectionId = $_POST['SectionId'];
     $NextSession = $_POST['NextSession'];
     $NextSectionId = $_POST['NextSectionId'];
@@ -3178,6 +3223,7 @@ elseif ($Action == "PromotionConfirm") {
 }
 ///////////////////////////////////////////////////////////////////////////////////////////
 elseif ($Action == "PaymentConfirm") {
+    array_walk($_POST, "FilterSqlInjection");
     $Token = $_POST['Token'];
     $Account = $_POST['Account'];
     $AdmissionId = $_POST['AdmissionId'];
@@ -3272,6 +3318,7 @@ elseif ($Action == "PaymentConfirm") {
 }
 ///////////////////////////////////////////////////////////////////////////////////////////
 elseif ($Action == "UpdateFeeConfirm") {
+    array_walk($_POST, "FilterSqlInjection");
     $AdmissionId = $_POST['AdmissionId'];
     $AdmissionNo = $_POST['AdmissionNo'];
     $SectionId = $_POST['SectionId'];
@@ -3369,6 +3416,7 @@ elseif ($Action == "UpdateFeeConfirm") {
 }
 ///////////////////////////////////////////////////////////////////////////////////////////
 elseif ($Action == "ManageBooks") {
+    array_walk($_POST, "FilterSqlInjection");
     $BookName = $_POST['BookName'];
     $AuthorName = $_POST['AuthorName'];
     $SubjectId = $_POST['SubjectId'];
@@ -3435,6 +3483,7 @@ elseif ($Action == "ManageBooks") {
 }
 ///////////////////////////////////////////////////////////////////////////////////////////
 elseif ($Action == "ListBookConfirm") {
+    array_walk($_POST, "FilterSqlInjection");
     $Token = $_POST['Token'];
     $DOA = $_POST['DOA'];
     $Remarks = mynl2br($_POST['Remarks']);
@@ -3488,6 +3537,7 @@ elseif ($Action == "ListBookConfirm") {
 }
 ///////////////////////////////////////////////////////////////////////////////////////////
 elseif ($Action == "IssueBook") {
+    array_walk($_POST, "FilterSqlInjection");
     $Books = $_POST['Books'];
     $IRToDetail = $_POST['IRToDetail'];
     $IRTo = $_POST['IRTo'];
@@ -3569,6 +3619,7 @@ elseif ($Action == "IssueBook") {
 }
 ///////////////////////////////////////////////////////////////////////////////////////////
 elseif ($Action == "ReturnBook") {
+    array_walk($_POST, "FilterSqlInjection");
     $IRTo = $_POST['IRTo'];
     $BookIssueId = $_POST['BookIssueId'];
     $ReturnBooks = $_POST['ReturnBooks'];
@@ -3643,6 +3694,7 @@ elseif ($Action == "ReturnBook") {
 }
 ///////////////////////////////////////////////////////////////////////////////////////////
 elseif ($Action == "ManageSCArea") {
+    array_walk($_POST, "FilterSqlInjection");
     $SCAreaName = $_POST['SCAreaName'];
     $SCPartId = $_POST['SCPartId'];
     $SCAreaId = $_POST['SCAreaId'];
@@ -3704,6 +3756,7 @@ elseif ($Action == "ManageSCArea") {
 }
 ///////////////////////////////////////////////////////////////////////////////////////////
 elseif ($Action == "ManageSCIndicator") {
+    array_walk($_POST, "FilterSqlInjection");
     $SCAreaId = $_POST['SCAreaId'];
     $SCIndicatorId = $_POST['SCIndicatorId'];
     $SCIndicatorName = $_POST['SCIndicatorName'];
@@ -3762,6 +3815,7 @@ elseif ($Action == "ManageSCIndicator") {
 }
 ///////////////////////////////////////////////////////////////////////////////////////////
 elseif ($Action == "SCMarksSave") {
+    array_walk($_POST, "FilterSqlInjection");
     $SCAreaId = $_POST['SCAreaId'];
     $ExamId = $_POST['ExamId'];
     $FieldNameArray = explode(",", $_POST['FieldNameArray']);
@@ -3839,6 +3893,7 @@ elseif ($Action == "SCMarksSave") {
 }
 ///////////////////////////////////////////////////////////////////////////////////////////
 elseif ($Action == "StaffSalaryStructure") {
+    array_walk($_POST, "FilterSqlInjection");
     $SalaryStructureId = $_POST['SalaryStructureId'];
     $PaidLeave = $_POST['PaidLeave'];
     $EffectiveFrom = $_POST['EffectiveFrom'];
@@ -3901,6 +3956,7 @@ elseif ($Action == "StaffSalaryStructure") {
 }
 ///////////////////////////////////////////////////////////////////////////////////////////
 elseif ($Action == "StaffAttendance") {
+    array_walk($_POST, "FilterSqlInjection");
     $Attendance = $_POST['box2View'];
     $AttendanceDate = $_POST['Date'];
     $InTime = $_POST['InTime'];
@@ -4035,6 +4091,7 @@ elseif ($Action == "StaffAttendance") {
 }
 ///////////////////////////////////////////////////////////////////////////////////////////
 elseif ($Action == "StudentAttendance") {
+    array_walk($_POST, "FilterSqlInjection");
     $Attendance = $_POST['box2View'];
     $AttendanceDate = $_POST['Date'];
     $SectionId = $_POST['SectionId'];
@@ -4119,6 +4176,7 @@ elseif ($Action == "StudentAttendance") {
 }
 ///////////////////////////////////////////////////////////////////////////////////////////
 elseif ($Action == "ManagePrintOption") {
+    array_walk($_POST, "FilterSqlInjection");
     $HeaderId = $_POST['HeaderId'];
     $FooterId = $_POST['FooterId'];
     $PrintCategory = $_POST['PrintCategory'];
@@ -4178,6 +4236,7 @@ elseif ($Action == "ManagePrintOption") {
 }
 ///////////////////////////////////////////////////////////////////////////////////////////
 elseif ($Action == "ManageSchoolMaterial") {
+    array_walk($_POST, "FilterSqlInjection");
     $ClassId = $_POST['ClassId'];
     $Name = $_POST['Name'];
     $SchoolMaterialId = $_POST['SchoolMaterialId'];

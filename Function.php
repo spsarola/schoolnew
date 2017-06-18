@@ -420,13 +420,11 @@ function GetRandomColor()
 }
 
 if(!function_exists('FilterSqlInjection')){
-//    include("Config.php");
-
-    function FilterSqlInjection(&$value,$key,$CONNECTION,$filter_not_apply=array()){
+    function FilterSqlInjection(&$value,$key,$filter_not_apply=array()){
+        global $CONNECTION;
         if(!in_array($key, $filter_not_apply)){
             $value=mysqli_real_escape_string($CONNECTION,htmlspecialchars(trim($value)));
         }
     }
-    
 }
 ?>
