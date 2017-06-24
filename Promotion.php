@@ -22,7 +22,9 @@ include("Template/Sidebar.php");
 			<?php $BreadCumb="Student Promotion"; BreadCumb($BreadCumb); ?>
 				
 				<?php DisplayNotification(); 
-                                array_map($_POST, "FilterSqlInjection");
+                                if(count($_POST)>0){
+                                    array_map($_POST, "FilterSqlInjection");
+                                }
 				$Student=isset($_POST['Student']) ? $_POST['Student'] : '';
 				$TransportFee=isset($_POST['TransportFee']) ? $_POST['TransportFee'] : '';
 				$NextSession=isset($_POST['NextSession']) ? $_POST['NextSession'] : '';
