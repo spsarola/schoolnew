@@ -144,7 +144,7 @@ include("Template/Sidebar.php");
                 $ListStatus = "<span class=\"badge badge-success\">Studying<span>";
             $ListStudentName = "<a href=Registration/$ListRegistrationId>$ListStudentName</a> $ListStatus";
             $ListClassName.=" $ListSectionName";
-            $Delete = "<a href=# onclick=\"showdetail('$ListRegistrationId','DeleteStudentRegistration','DeleteStudentRegistration')\"><span class=\"icomoon-icon-cancel tip\" title=\"Delete\"></span></a>";
+            $Delete = "<a href='javascript:void(0);' onclick=\"showdetail('$ListRegistrationId','DeleteStudentRegistration','DeleteStudentRegistration')\"><span class=\"icomoon-icon-cancel tip\" title=\"Delete\"></span></a>";
             $QA[] = array($ListStudentName, $ListFatherName, $ListMobile, $ListClassName, $ListDOR, $Delete);
             $Print3.="<tr class=\"odd gradeX\">
 								<td>$ListStudentName</td>
