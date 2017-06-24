@@ -27,7 +27,7 @@ include("Template/Sidebar.php");
 				$ButtonContentSet=$ButtonContent=$AddButton=$UpdateId=$Name=$Purpose=$Mobile=$InDateTime=$NoOfPeople=$Description=$DOC=$OutDateTime=$count1="";
 				if($Id!="")
 				{
-					$query1="select * from visitorbook where VisitorBookId='$Id' and VisitorBookStatus!='Deleted' ";
+					$query1="select * from visitorbook where VisitorBookId='".Escape($Id)."' and VisitorBookStatus!='Deleted' ";
 					$check1=mysqli_query($CONNECTION,$query1);
 					$count1=mysqli_num_rows($check1);
 					if($count1>0 && $Action=="Update")

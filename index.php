@@ -52,7 +52,7 @@ else
 	{
 	$Password=md5($Password);
 	$query="select UserId,Password from user where 
-			Username='$Username' and 
+			Username='".Escape($Username)."' and 
 			Password='$Password' ";
 	}
 	$check=mysqli_query($CONNECTION,$query);

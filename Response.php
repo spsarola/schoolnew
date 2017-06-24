@@ -1,6 +1,7 @@
 <?php
 include("Include.php");
 $Confirm=Confirmation();
+array_map($_POST, "FilterSqlInjection");
 if(isset($_POST["contentText"]) && strlen($_POST["contentText"])>0) 
 {	
 	$contentToSave = filter_var($_POST["contentText"],FILTER_SANITIZE_STRING, FILTER_FLAG_STRIP_HIGH); 

@@ -7,7 +7,7 @@ header("Location:LogIn");
 ///////////////////////////////////////////////////////////////////////////////////////////
 elseif($Action=="ManageHouse")
 {	
-	$HouseName=$_POST['HouseName'];
+	$HouseName=  Escape(trim($_POST['HouseName']));
 	$HouseId=$_POST['HouseId'];
 	$Session=$CURRENTSESSION;
 	

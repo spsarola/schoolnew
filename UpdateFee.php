@@ -29,12 +29,12 @@ include("Template/Sidebar.php");
 				if($Student!="" && $CurrentSectionId!="")
 				{
 					$query="Select studentfee.AdmissionNo,studentfee.Remarks,Date,studentfee.Distance,FeeStructure,admission.AdmissionId,registration.RegistrationId,StudentName,FatherName,Mobile,ClassName,SectionName,section.SectionId,class.ClassId from registration,class,section,admission,studentfee where
-						studentfee.Session='$CURRENTSESSION' and
+						studentfee.Session='".Escape($CURRENTSESSION)."' and
 						class.ClassId=section.ClassId and
 						studentfee.SectionId=section.SectionId and
 						registration.RegistrationId=admission.RegistrationId and
 						admission.AdmissionId=studentfee.AdmissionId and 
-						studentfee.SectionId='$CurrentSectionId' and 
+						studentfee.SectionId='".Escape($CurrentSectionId)."' and 
 						Status='Studying'
 						order by StudentName";
 					$check=mysqli_query($CONNECTION,$query);
@@ -70,7 +70,7 @@ include("Template/Sidebar.php");
 
 				$query3="select ClassName,SectionName,SectionId from class,section where 
 					class.ClassId=section.ClassId and class.ClassStatus='Active' and
-					section.SectionStatus='Active' and class.Session='$CURRENTSESSION' order by ClassName";
+					section.SectionStatus='Active' and class.Session='".Escape($CURRENTSESSION)."' order by ClassName";
 				$check3=mysqli_query($CONNECTION,$query3);
 				$ListCurrentClass=$ListAllClass="";
 				while($row3=mysqli_fetch_array($check3))
@@ -109,7 +109,7 @@ include("Template/Sidebar.php");
 						feepayment.FeeType=fee.FeeId and
 						fee.FeeType=masterentry.MasterEntryId and
 						TransactionHead='Fee' and
-						TransactionHeadId='$Student' 
+						TransactionHeadId='".Escape($Student)."' 
 						group by feepayment.FeeType ";
 					$check5=mysqli_query($CONNECTION,$query5);
 					while($row5=mysqli_fetch_array($check5))
@@ -120,7 +120,7 @@ include("Template/Sidebar.php");
 					}
 					
 					$query6="select MasterEntryValue,FeeId,Distance from fee,masterentry where
-						fee.FeeType=masterentry.MasterEntryId and fee.SectionId='$CurrentSectionId' and fee.Session='$CURRENTSESSION' ";
+						fee.FeeType=masterentry.MasterEntryId and fee.SectionId='".Escape($CurrentSectionId)."' and fee.Session='".Escape($CURRENTSESSION)."' ";
 					$check6=mysqli_query($CONNECTION,$query6);
 					while($row6=mysqli_fetch_array($check6))
 					{
@@ -257,7 +257,7 @@ include("Template/Sidebar.php");
 					if($StudentSelected==1 && $ValidSection==1)
 					{
 						$query11="select MasterEntryValue,FeeType,Amount,FeeId,Distance from fee,masterentry where
-								fee.FeeType=masterentry.MasterEntryId and SectionId='$CurrentSectionId' and Session='$CURRENTSESSION' and (Distance='' or Distance='$SelectedDistance') ";
+								fee.FeeType=masterentry.MasterEntryId and SectionId='".Escape($CurrentSectionId)."' and Session='".Escape($CURRENTSESSION)."' and (Distance='' or Distance='".Escape($SelectedDistance)."') ";
 						$check11=mysqli_query($CONNECTION,$query11);
 						$count11=mysqli_num_rows($check11);
 						while($row11=mysqli_fetch_array($check11))

@@ -4300,6 +4300,7 @@ elseif ($Action == "ManageSchoolMaterial") {
 }
 ///////////////////////////////////////////////////////////////////////////////////////////
 elseif ($Action == "Purchase") {
+    array_walk($_POST, "FilterSqlInjection");
     $Token = $_POST['Token'];
     $Quantity = $_POST['Quantity'];
     $PurchaseType = $_POST['PurchaseType'];
@@ -4367,6 +4368,7 @@ elseif ($Action == "Purchase") {
 }
 ///////////////////////////////////////////////////////////////////////////////////////////
 elseif ($Action == "PurchaseCheckOut") {
+    array_walk($_POST, "FilterSqlInjection");
     $SupplierId = $_POST['SupplierId'];
     $PurchaseDate = $_POST['PurchaseDate'];
     $PurchaseType = $_POST['PurchaseType'];
@@ -4420,6 +4422,7 @@ elseif ($Action == "PurchaseCheckOut") {
 }
 ///////////////////////////////////////////////////////////////////////////////////////////
 elseif ($Action == "ManageStock") {
+    array_walk($_POST, "FilterSqlInjection");
     $StockType = $_POST['StockType'];
     $StockName = $_POST['StockName'];
     $OpeningStock = $_POST['OpeningStock'];
@@ -4471,6 +4474,7 @@ elseif ($Action == "ManageStock") {
 }
 ///////////////////////////////////////////////////////////////////////////////////////////
 elseif ($Action == "TransferIndividualStock") {
+    array_walk($_POST, "FilterSqlInjection");
     $TransferType = $_POST['TransferType'];
     if ($TransferType != "StockTransfer" && $TransferType != "StockAssign")
         $TransferType = "StockAssing";
@@ -4543,6 +4547,7 @@ elseif ($Action == "TransferIndividualStock") {
 }
 ///////////////////////////////////////////////////////////////////////////////////////////
 elseif ($Action == "PurchasePayment") {
+    array_walk($_POST, "FilterSqlInjection");
     $AmountPaid = $_POST['AmountPaid'];
     $Account = $_POST['Account'];
     $DOP = $_POST['DOP'];
@@ -4596,6 +4601,7 @@ elseif ($Action == "PurchasePayment") {
 }
 ///////////////////////////////////////////////////////////////////////////////////////////
 elseif ($Action == "Issue") {
+    array_walk($_POST, "FilterSqlInjection");
     $AdmissionId = $_POST['AdmissionId'];
     $ClassId = $_POST['ClassId'];
     $MaterialType = $_POST['MaterialType'];
@@ -4650,6 +4656,7 @@ elseif ($Action == "Issue") {
 }
 ///////////////////////////////////////////////////////////////////////////////////////////
 elseif ($Action == "StaffSalaryPayment") {
+    array_walk($_POST, "FilterSqlInjection");
     $StaffId = $_POST['StaffId'];
     $DOP = strtotime($_POST['DOP']);
     $MonthYear = strtotime("01-" . $_POST['MonthYear']);
@@ -4715,6 +4722,7 @@ elseif ($Action == "StaffSalaryPayment") {
 }
 ///////////////////////////////////////////////////////////////////////////////////////////
 elseif ($Action == "UpdateTransportFee") {
+    array_walk($_POST, "FilterSqlInjection");
     $AdmissionId = $_POST['AdmissionId'];
     $Password = $_POST['Password'];
     $Distance = $_POST['Distance'];
@@ -4843,6 +4851,7 @@ elseif ($Action == "UpdateTransportFee") {
 }
 ///////////////////////////////////////////////////////////////////////////////////////////
 elseif ($Action == "UpdateClass") {
+    array_walk($_POST, "FilterSqlInjection");
     $NewSectionId = $_POST['NewSectionId'];
     $AdmissionId = $_POST['AdmissionId'];
 
@@ -4969,6 +4978,7 @@ elseif ($Action == "SendSMS") {
 }
 ///////////////////////////////////////////////////////////////////////////////////////////
 elseif ($Action == "StudentTermination") {
+    array_walk($_POST, "FilterSqlInjection");
     $RegistrationId = $_POST['RegistrationId'];
     $StudentFeeId = $_POST['StudentFeeId'];
     $Remarks = mynl2br($_POST['Remarks']);
@@ -5019,7 +5029,6 @@ elseif ($Action == "StudentTermination") {
 ///////////////////////////////////////////////////////////////////////////////////////////
 elseif ($Action == "Language") {
     $LanguageName = Escape($_POST['LanguageName']);
-    ;
     $LanguageId = Escape($_POST['LanguageId']);
     $RandomToken = Escape($_POST['RandomToken']);
 
@@ -5056,7 +5065,6 @@ elseif ($Action == "Language") {
 ///////////////////////////////////////////////////////////////////////////////////////////
 elseif ($Action == "Phrase") {
     $Phrase = Escape($_POST['Phrase']);
-    ;
     $PhraseId = Escape($_POST['PhraseId']);
     $RandomToken = Escape($_POST['RandomToken']);
 

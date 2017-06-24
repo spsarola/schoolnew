@@ -5,7 +5,7 @@ $SearchRequired=1;
 $FormRequired=1;
 $TableRequired=1;
 include("Include.php");
-$MaterialType=isset($_GET['MaterialType']) ? $_GET['MaterialType'] : '';
+$MaterialType=isset($_GET['MaterialType']) ? mysqli_real_escape_string($_GET['MaterialType']) : '';
 if($MaterialType=="" || ($MaterialType!="Books" && $MaterialType!="Uniform" && $MaterialType!="Other") )
 $MaterialType="Books";
 IsLoggedIn();
@@ -56,7 +56,7 @@ include("Template/Sidebar.php");
 					$SessionArray[]=$row01['Session'];
 				}
 				
-				$query02="select Material from issue where MaterialType='$MaterialType' and DOI<='$StockDate' ";
+				$query02="select Material from issue where MaterialType='$MaterialType' and DOI<='".Escape($StockDate)."' ";
 				$check02=mysqli_query($CONNECTION,$query02);
 				$count02=mysqli_num_rows($check02);
 				$STR=$i="";
@@ -71,7 +71,7 @@ include("Template/Sidebar.php");
 				$query1="select SUM(Quantity) as TotalQuantity,UniqueId from purchaselist,purchase where 
 					MaterialType='$MaterialType' and
 					purchaselist.Token=purchase.Token and
-					purchase.DOP<='$StockDate' 
+					purchase.DOP<='".Escape($StockDate)."' 
 					group by UniqueId ";
 				$check1=mysqli_query($CONNECTION,$query1);
 				$count1=mysqli_num_rows($check1);

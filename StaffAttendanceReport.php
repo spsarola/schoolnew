@@ -67,7 +67,7 @@ include("Template/Sidebar.php");
 					$date1timestamp=strtotime($date1);
 					$date2timestamp=strtotime($date2);
 					
-					$query="select Attendance,Date from staffattendance where Date>='$date1timestamp' and Date<='$date2timestamp' ";
+					$query="select Attendance,Date from staffattendance where Date>='".Escape($date1timestamp)."' and Date<='".Escape($date2timestamp)."' ";
 					$check=mysqli_query($CONNECTION,$query);
 					while($row=mysqli_fetch_array($check))
 					{

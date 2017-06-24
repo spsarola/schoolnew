@@ -22,9 +22,9 @@ include("Template/Sidebar.php");
 			<?php $BreadCumb="Student Admission"; BreadCumb($BreadCumb); ?>
 				
 				<?php DisplayNotification(); 
-				$Student=isset($_POST['Student']) ? $_POST['Student'] : '';
-				$TransportFee=isset($_POST['TransportFee']) ? $_POST['TransportFee'] : '';
-				$Distance=isset($_POST['Distance']) ? $_POST['Distance'] : '';
+				$Student=isset($_POST['Student']) ? Escape(trim($_POST['Student'])) : '';
+				$TransportFee=isset($_POST['TransportFee']) ? Escape(trim($_POST['TransportFee'])) : '';
+				$Distance=isset($_POST['Distance']) ? Escape(trim($_POST['Distance'])) : '';
 				$TransportFeeChecked=$StudentSelected=$ValidationRules=$ValidationMessages=$i=$STR=$ListAllFee="";
 				if($TransportFee=="Yes")
 				$TransportFeeChecked="checked=checked";

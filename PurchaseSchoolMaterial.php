@@ -6,7 +6,7 @@ $FormRequired=1;
 $TableRequired=1;
 include("Include.php");
 IsLoggedIn();
-$MaterialType=isset($_GET['MaterialType']) ? $_GET['MaterialType'] : '';
+$MaterialType=isset($_GET['MaterialType']) ? mysqli_real_escape_string($_GET['MaterialType']) : '';
 if($MaterialType=="" || ($MaterialType!="Books" && $MaterialType!="Uniform" && $MaterialType!="Other") )
 $MaterialType="Books";
 

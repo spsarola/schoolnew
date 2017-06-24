@@ -77,6 +77,7 @@ while($row2=mysqli_fetch_array($check2))
 				</div>
 			</div>
 		</div>
+            <p><?php echo $UpdateMotherName; ?></p>
 		<div class="form-row row-fluid">
 			<div class="span12">
 				<div class="row-fluid">

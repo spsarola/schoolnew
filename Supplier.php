@@ -30,7 +30,7 @@ include("Template/Sidebar.php");
 				$count1=0;
 				if($SupplierId!="")
 				{
-					$query1="select * from supplier where SupplierId='$SupplierId' and SupplierStatus='Active' ";
+					$query1="select * from supplier where SupplierId='".Escape($SupplierId)."' and SupplierStatus='Active' ";
 					$check1=mysqli_query($CONNECTION,$query1);
 					$count1=mysqli_num_rows($check1);
 					if($count1>0 && $Action=="Update")

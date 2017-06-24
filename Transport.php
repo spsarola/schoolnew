@@ -27,7 +27,7 @@ $ReadingButtonContent=$ReadingButtonContentSet=$ReadingAddButton=$UpdateVehicleR
 $VehicleName=$VehicleNumber=$FuelVehicleId=$ReceiptNo=$Quantity=$Rate=$DOF=$FuelRemarks=$ReadingVehicleId=$DOR=$Reading=$ReadingRemarks="";
 if($UniqueId!="" && ($Action=="UpdateVehicle" || $Action=="DeleteVehicle"))
 {
-	$query1="select * from vehicle where VehicleId='$UniqueId' ";
+	$query1="select * from vehicle where VehicleId='".Escape($UniqueId)."'";
 	$check1=mysqli_query($CONNECTION,$query1);
 	$count1=mysqli_num_rows($check1);
 	if($count1>0 && $Action=="UpdateVehicle")
@@ -43,7 +43,7 @@ if($UniqueId!="" && ($Action=="UpdateVehicle" || $Action=="DeleteVehicle"))
 }
 elseif($UniqueId!="" && ($Action=="UpdateFuel" || $Action=="DeleteFuel"))
 {
-	$query2="select VehicleId,ReceiptNo,Quantity,Rate,DOF,Remarks from vehiclefuel where FuelId='$UniqueId' and FuelStatus='Active'";
+	$query2="select VehicleId,ReceiptNo,Quantity,Rate,DOF,Remarks from vehiclefuel where FuelId='".Escape($UniqueId)."' and FuelStatus='Active'";
 	$check2=mysqli_query($CONNECTION,$query2);
 	$count2=mysqli_num_rows($check2);
 	if($count2>0 && $Action=="UpdateFuel")
@@ -63,7 +63,7 @@ elseif($UniqueId!="" && ($Action=="UpdateFuel" || $Action=="DeleteFuel"))
 }
 elseif($UniqueId!="" && ($Action=="UpdateReading" || $Action=="DeleteReading"))
 {
-	$query3="select VehicleId,Reading,DOR,Remarks from vehiclereading where VehicleReadingId='$UniqueId' and VehicleReadingStatus='Active'";
+	$query3="select VehicleId,Reading,DOR,Remarks from vehiclereading where VehicleReadingId='".Escape($UniqueId)."' and VehicleReadingStatus='Active'";
 	$check3=mysqli_query($CONNECTION,$query3);
 	$count3=mysqli_num_rows($check3);
 	if($count3>0 && $Action=="UpdateReading")
@@ -362,10 +362,10 @@ if($ReadingButtonContentSet!=1)
 									$FDTSFuel=strtotime($FromDateFuelStart);
 									$TDTSFuel=strtotime($ToDateFuelEnd);
 									if($FuelReportVehicleId!="")
-									$FuelVehicleQuery=" and vehiclefuel.VehicleId='$FuelReportVehicleId' ";
+									$FuelVehicleQuery=" and vehiclefuel.VehicleId='".Escape($FuelReportVehicleId)."'";
 									$query11="select FuelId,ReceiptNo,Quantity,Rate,DOF,VehicleName,VehicleNumber from vehiclefuel,vehicle where
 										vehiclefuel.VehicleId=vehicle.VehicleId and FuelStatus='Active' and 
-										DOF>='$FDTSFuel' and DOF<='$TDTSFuel' $FuelVehicleQuery ";
+										DOF>='".Escape($FDTSFuel)."' and DOF<='".Escape($TDTSFuel)."' $FuelVehicleQuery ";
 									$check11=mysqli_query($CONNECTION,$query11);
 									$DATA11=array();
 									$QA11=array();
@@ -461,10 +461,10 @@ if($ReadingButtonContentSet!=1)
 									$FDTSReading=strtotime($FromDateReadingStart);
 									$TDTSReading=strtotime($ToDateReadingEnd);
 									if($ReadingReportVehicleId!="")
-									$ReadingVehicleQuery=" and vehiclereading.VehicleId='$ReadingReportVehicleId' ";
+									$ReadingVehicleQuery=" and vehiclereading.VehicleId='".Escape($ReadingReportVehicleId)."'";
 									$query11="select VehicleReadingId,Reading,DOR,VehicleName,VehicleNumber from vehiclereading,vehicle where
 										vehiclereading.VehicleId=vehicle.VehicleId and VehicleReadingStatus='Active' and 
-										DOR>='$FDTSReading' and DOR<='$TDTSReading' $ReadingVehicleQuery ";
+										DOR>='".Escape($FDTSReading)."' and DOR<='".Escape($TDTSReading)."' $ReadingVehicleQuery ";
 									$check11=mysqli_query($CONNECTION,$query11);
 									$DATA12=array();
 									$QA12=array();

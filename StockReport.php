@@ -87,7 +87,7 @@ include("Template/Sidebar.php");
 					{
 						$query="select ClassName,SectionName,StudentName,FatherName,Mobile,admission.AdmissionId from admission,registration,class,section,studentfee where 
 								studentfee.AdmissionId=admission.AdmissionId and
-								studentfee.Session='$CURRENTSESSION'
+								studentfee.Session='".Escape($CURRENTSESSION)."'
 								and registration.RegistrationId=admission.RegistrationId
 								and class.ClassId=section.ClassId
 								and registration.Status='Studying' group by studentfee.AdmissionId
@@ -157,9 +157,9 @@ include("Template/Sidebar.php");
 							where
 							stock.StockId=stockassign.StockId and
 							stock.StockType=masterentry.MasterEntryId and 
-							stockassign.AssignTo='$GETAssignTo' and
-							stockassign.AssignToDetail='$GETAssignToDetail' and
-							DOT<='$StockDate'
+							stockassign.AssignTo='".Escape($GETAssignTo)."' and
+							stockassign.AssignToDetail='".Escape($GETAssignToDetail)."' and
+							DOT<='".Escape($StockDate)."'
 							group by stockassign.StockId order by StockName ";						
 					}
 					

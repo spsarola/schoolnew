@@ -37,7 +37,7 @@ while($row3=mysqli_fetch_array($check3))
 	
 if($UniqueId!="" && ($Action=="UpdateRoute" || $Action=="DeleteRoute" || $Action=="ViewRoute"))
 {
-	$query1="select * from vehicleroute where VehicleRouteId='$UniqueId' and Session='$CURRENTSESSION' ";
+	$query1="select * from vehicleroute where VehicleRouteId='".Escape($UniqueId)."' and Session='".Escape($CURRENTSESSION)."'";
 	$check1=mysqli_query($CONNECTION,$query1);
 	$count1=mysqli_num_rows($check1);
 	if($count1>0 && $Action=="UpdateRoute")
@@ -68,7 +68,7 @@ if($UniqueId!="" && ($Action=="UpdateRoute" || $Action=="DeleteRoute" || $Action
 	$query4="select admission.AdmissionId,StudentName,FatherName,ClassName,SectionName,Mobile,Distance from registration,class,section,admission,studentfee where
 			registration.RegistrationId=admission.RegistrationId and
 			admission.AdmissionId=studentfee.AdmissionId and
-			studentfee.Session='$CURRENTSESSION' and
+			studentfee.Session='".Escape($CURRENTSESSION)."' and
 			studentfee.SectionId=section.SectionId and
 			class.ClassId=section.ClassId 
 			order by StudentName,FatherName";
@@ -128,7 +128,7 @@ if($VehicleRouteButtonContentSet!=1)
 		VehicleRouteStatus='Active' and
 		vehicleroute.VehicleId=vehicle.VehicleId and
 		vehicleroute.RouteTo=masterentry.MasterEntryId and
-		vehicleroute.Session='$CURRENTSESSION' 
+		vehicleroute.Session='".Escape($CURRENTSESSION)."' 
 		order by VehicleRouteName";
 	$check2=mysqli_query($CONNECTION,$query2);
 	$count2=mysqli_num_rows($check2);
@@ -194,8 +194,8 @@ if($count1>0 && $Action=="ViewRoute")
 	$query101="select Students from vehicleroutedetail,vehicleroute where
 		vehicleroutedetail.VehicleRouteId=vehicleroute.VehicleRouteId and
 		vehicleroutedetail.VehicleRouteId!='$UniqueId' and
-		vehicleroute.Session='$CURRENTSESSION' and
-		RouteTo='$SelectedRouteTo' and Students!='' ";
+		vehicleroute.Session='".Escape($CURRENTSESSION)."' and
+		RouteTo='".Escape($SelectedRouteTo)."' and Students!='' ";
 	$check101=mysqli_query($CONNECTION,$query101);
 	while($row101=mysqli_fetch_array($check101))
 	{
@@ -209,7 +209,7 @@ if($count1>0 && $Action=="ViewRoute")
 	$SUniqueId=isset($_GET['SUniqueId']) ? $_GET['SUniqueId'] : '';
 	if($SUniqueId!="" && $SAction=="UpdateRouteDetail")
 	{
-		$query6="select VehicleRouteDetailId,VehicleRouteId,RouteStoppageId,Students from vehicleroutedetail where VehicleRouteDetailId='$SUniqueId' and VehicleRouteId='$UniqueId' ";
+		$query6="select VehicleRouteDetailId,VehicleRouteId,RouteStoppageId,Students from vehicleroutedetail where VehicleRouteDetailId='".Escape($SUniqueId)."' and VehicleRouteId='".Escape($UniqueId)."'";
 		
 		$check6=mysqli_query($CONNECTION,$query6);
 		$count6=mysqli_num_rows($check6);
@@ -217,7 +217,7 @@ if($count1>0 && $Action=="ViewRoute")
 	
 	$query5="Select VehicleRouteDetailId,RouteStoppageId,MasterEntryValue,Students,DOE from vehicleroutedetail,masterentry where
 		vehicleroutedetail.RouteStoppageId=masterentry.MasterEntryId and
-		VehicleRouteId='$UniqueId' and
+		VehicleRouteId='".Escape($SUniqueId)."' and
 		VehicleRouteDetailStatus='Active' ";
 	$check5=mysqli_query($CONNECTION,$query5);
 	$count5=mysqli_num_rows($check5);

@@ -5,7 +5,7 @@ $ListAllSalaryStructure =$Document =$Resolution="";
 if($Action=="StaffProfile")
 {
 $StaffId=$_GET['Id'];
-$query100="select * from staff,masterentry where staff.StaffPosition=masterentry.MasterEntryId and StaffId='$StaffId'";
+$query100="select * from staff,masterentry where staff.StaffPosition=masterentry.MasterEntryId and StaffId='".Escape($StaffId)."'";
 $check100=mysqli_query($CONNECTION,$query100);
 $row100=mysqli_fetch_array($check100);
 $StaffName=$row100['StaffName'];
@@ -186,11 +186,11 @@ if($('#StaffDOBDetail').length) {
 elseif($Action=="Qualification")
 {
 	$StaffId=$_GET['Id'];
-	$query1="Select StaffId from staff where StaffId='$StaffId' ";
+	$query1="Select StaffId from staff where StaffId='".Escape($StaffId)."' ";
 	$check1=mysqli_query($CONNECTION,$query1);
 	$count1=mysqli_num_rows($check1);
 	
-	$check=mysqli_query($CONNECTION,"select * from qualification where UniqueId='$StaffId' and Type='Staff' ");
+	$check=mysqli_query($CONNECTION,"select * from qualification where UniqueId='".Escape($StaffId)."' and Type='Staff' ");
 	$count=mysqli_num_rows($check);
 	if($count>0 && $count1==1)
 	{
@@ -635,7 +635,7 @@ elseif($Action=="SalaryPayment")
 			ExpenseStatus='Active' and
 			transaction.TransactionFrom=accounts.AccountId and 
 			expense.SalaryPaymentType=masterentry.MasterEntryId and
-			expense.StaffId='$StaffId'
+			expense.StaffId='".Escape($StaffId)."'
 			order by SalaryMonthYear desc ";
 		$check1=mysqli_query($CONNECTION,$query1);
 		$count1=mysqli_num_rows($check1);
@@ -894,7 +894,7 @@ elseif($Action=="Photo")
 	</div>
 	<div class="span8">
 	<?php
-	$query="select PhotoId,Path,Title,MasterEntryValue from photos,masterentry where photos.Document=masterentry.MasterEntryId and UniqueId='$StaffId' and Detail='StaffDocuments' ";
+	$query="select PhotoId,Path,Title,MasterEntryValue from photos,masterentry where photos.Document=masterentry.MasterEntryId and UniqueId='".Escape($StaffId)."' and Detail='StaffDocuments' ";
 	$check=mysqli_query($CONNECTION,$query);
 	$count=mysqli_num_rows($check);
 	if($count>0)

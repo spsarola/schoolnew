@@ -7,7 +7,7 @@ if($Action=="Fee")
 if(!empty($_POST) && isset($_POST))
 {
   $FeeType = $_POST['FeeType'];
-  $Amount = $_POST['Amount'];
+  $Amount = mysqli_real_escape_string($CONNECTION,trim($_POST['Amount']));
   $Token=$_POST['Token'];
   $AdmissionId=$_POST['AdmissionId'];
   $SectionId=$_POST['SectionId'];
@@ -122,7 +122,7 @@ elseif($Action=="ListBook")
 if(!empty($_POST) && isset($_POST))
 {
   $BookId = $_POST['BookId'];
-  $AccessionNo = $_POST['AccessionNo'];
+  $AccessionNo = mysqli_real_escape_string($CONNECTION,trim($_POST['AccessionNo']));
   $Token=$_POST['Token'];
   $query1="select AccessionNo from listbook where AccessionNo='$AccessionNo' and (ListBookStatus='Active' or (ListBookStatus='Pending' and Token='$Token')) ";
   $check1=mysqli_query($CONNECTION,$query1);
