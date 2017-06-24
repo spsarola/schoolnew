@@ -1,1 +1,0 @@
-{"aaData":[["<a href=Registration\/1>test4<\/a> <span class=\"badge badge-important\">Not Admitted<span>","ft4","8978987657","play group A","17 Jun 2017","<a href=# onclick=\"showdetail('1','DeleteStudentRegistration','DeleteStudentRegistration')\"><span class=\"icomoon-icon-cancel tip\" title=\"Delete\"><\/span><\/a>"]]}
