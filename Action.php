@@ -5128,6 +5128,34 @@ elseif ($Action == "Translation") {
     header("Location:Language");
 }
 ///////////////////////////////////////////////////////////////////////////////////////////
+elseif($Action == "ExportStudentData"){
+    $file = fopen('first-track-report.csv', 'w+');
+    $data = array('RegistrationId', 'Session', 'StudentName', 'FatherName', 'FatherMobile', 'FatherDateOfBirth', 'FatherEmail', 'FatherQualification', 'FatherOccupation', 'FatherDesignation', 'FatherOrganization', 'MotherName', 'MotherMobile', 'MotherDateOfBirth', 'MotherEmail', 'MotherQualification', 'MotherOccupation', 'MotherDesignation', 'MotherOrganization', 'Mobile', 'SectionId', 'DOB', 'DOR', 'DOE', 'Landline', 'AlternateMobile', 'PresentAddress', 'PermanentAddress', 'BloodGroup', 'Caste', 'Category', 'Gender', 'Nationality', 'Username', 'DOL', 'DOLUsername', 'DOD', 'DODUsername', 'DateOfTermination', 'TerminationReason', 'TerminationRemarks', 'DOT', 'SSSMID', 'Family_SSSMID', 'Aadhar_No');
+    fputcsv($file, $data);
+
+
+    $data = '';
+    $suppliers = '';
+    $items = mysqli_query($CONNECTION,"SELECT RegistrationId,Session,StudentName,FatherName,FatherMobile,FatherDateOfBirth,FatherEmail,FatherQualification,FatherOccupation,FatherDesignation,FatherOrganization,MotherName,MotherMobile,MotherDateOfBirth,MotherEmail,MotherQualification,MotherOccupation,MotherDesignation,MotherOrganization,Mobile,SectionId,DOB,DOR,DOE,Landline,AlternateMobile,PresentAddress,PermanentAddress,BloodGroup,Caste,Category,Gender,Nationality,Username,DOL,DOLUsername,DOD,DODUsername,DateOfTermination,TerminationReason,TerminationRemarks,DOT,SSSMID,Family_SSSMID,Aadhar_No FROM registration");
+    
+    while ($row = mysqli_fetch_array($items)) {
+        $row=array_map('strval',$row);
+        $row=array_map('html_entity_decode',$row);
+        
+        $data = array($row['RegistrationId'], $row['Session'], $row['StudentName'], $row['FatherName'], $row['FatherMobile'], $row['FatherDateOfBirth'], $row['FatherEmail'], $row['FatherQualification'], $row['FatherOccupation'], $row['FatherDesignation'], $row['FatherOrganization'], $row['MotherName'], $row['MotherMobile'], $row['MotherDateOfBirth'], $row['MotherEmail'], $row['MotherQualification'], $row['MotherOccupation'], $row['MotherDesignation'], $row['MotherOrganization'], $row['Mobile'], $row['SectionId'], $row['DOB'], $row['DOR'], $row['DOE'], $row['Landline'], $row['AlternateMobile'], $row['PresentAddress'], $row['PermanentAddress'], $row['BloodGroup'], $row['Caste'], $row['Category'], $row['Gender'], $row['Nationality'], $row['Username'], $row['DOL'], $row['DOLUsername'], $row['DOD'], $row['DODUsername'], $row['DateOfTermination'], $row['TerminationReason'], $row['TerminationRemarks'], $row['DOT'], $row['SSSMID'], $row['Family_SSSMID'], $row['Aadhar_No']);
+        fputcsv($file, $data);
+    }
+
+    fclose($file);
+
+    $file = 'first-track-report.csv';
+
+    header('Content-type: text/csv');
+    header('Content-Disposition: attachment; filename="' . basename($file) . '"');
+    header('Content-Transfer-Encoding: binary');
+    readfile($file);
+}
+///////////////////////////////////////////////////////////////////////////////////////////
 else
     header("location:DashBoard");
 ?>

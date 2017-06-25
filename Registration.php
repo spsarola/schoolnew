@@ -161,6 +161,15 @@ include("Template/Sidebar.php");
         ?>	
 
         <div class="row-fluid">
+            <div class="span12">
+                <form action="Action" name="ExportStudentData" id="ExportStudentData" method="Post">
+                    <input type="hidden" name="RandomNumber" value="<?php echo $TOKEN; ?>" readonly>
+                    <input type="hidden" name="Action" value="ExportStudentData" readonly>
+                    <button type="submit" tabindex="7" class="btn btn-info">Export CSV</button>
+                </form>
+            </div>    
+        </div>   
+        <div class="row-fluid">
             <div class="span4">
                 <form class="form-horizontal" action="ActionDelete" name="DeleteStudentRegistration" id="DeleteStudentRegistration" method="Post">
                     <div id="DeleteStudentRegistration"></div>
@@ -263,7 +272,7 @@ include("Template/Sidebar.php");
                                                 <div class="controls sel span8">   
                                                     <select tabindex="10" name="Class" id="Class" class="nostyle" style="width:100%;" >
                                                         <option></option>
-<?php echo $ListAllClass; ?>
+                                                        <?php echo $ListAllClass; ?>
                                                     </select>
                                                 </div>
                                             </div>
@@ -274,9 +283,9 @@ include("Template/Sidebar.php");
                                             <div class="row-fluid">
                                                 <label class="form-label span4" for="CallResponse">Gender </label> 
                                                 <div class="span8 controls sel">   
-<?php
-GetCategoryValue('Gender', 'Gender', '', '', '', '', '', 1, '');
-?>
+                                                    <?php
+                                                    GetCategoryValue('Gender', 'Gender', '', '', '', '', '', 1, '');
+                                                    ?>
                                                 </div> 
                                             </div>
                                         </div> 
@@ -297,43 +306,43 @@ ActionButton($ButtonContent, 7); ?>
                                 </div>
                             </div>
                     </div>					
-                    <div class="span8">
-                        <div class="box gradient">
-                            <div class="title">
-                                <h4>
-                                    <span>Registration List</span>
+            <div class="span8">
+                <div class="box gradient">
+                    <div class="title">
+                        <h4>
+                            <span>Registration List</span>
 <?php if ($count3 > 0) { ?>
-                                        <div class="PrintClass">
-                                            <form method=post action=Print target=_blank>
-                                                <input type="hidden" name="Action" value="Print" readonly>
-                                                <input type="hidden" name="PrintCategory" value="PrintCategory" readonly>
-                                                <input type="hidden" name="SessionName" value="PrintRegistrationList" readonly>
-                                                <input type="hidden" name="HeadingName" value="PrintRegistrationHeading" readonly>
-                                                <button class="icomoon-icon-printer-2 tip" title="Print Registration List"></button>
-                                            </form>
-                                        </div>
+                                <div class="PrintClass">
+                                    <form method=post action=Print target=_blank>
+                                        <input type="hidden" name="Action" value="Print" readonly>
+                                        <input type="hidden" name="PrintCategory" value="PrintCategory" readonly>
+                                        <input type="hidden" name="SessionName" value="PrintRegistrationList" readonly>
+                                        <input type="hidden" name="HeadingName" value="PrintRegistrationHeading" readonly>
+                                        <button class="icomoon-icon-printer-2 tip" title="Print Registration List"></button>
+                                    </form>
+                                </div>
 <?php } ?>
-                                </h4>
-                                <a href="#" class="minimize">Minimize</a>
-                            </div>
-                            <div class="content clearfix noPad">
+                        </h4>
+                        <a href="#" class="minimize">Minimize</a>
+                    </div>
+                    <div class="content clearfix noPad">
 <?php
 $Print1 = "<table id=\"RegistrationTable\" cellpadding=\"0\" cellspacing=\"0\" border=\"0\" class=\"responsive dynamicTable display table table-bordered\" width=\"100%\">
-									<thead>
-										<tr>
-											<th>Student Name</th>
-											<th>Father Name</th>
-											<th>Mobile</th>
-											<th>Class Registered</th>
-											<th>Date of Registration</th>";
+                                                                <thead>
+                                                                        <tr>
+                                                                                <th>Student Name</th>
+                                                                                <th>Father Name</th>
+                                                                                <th>Mobile</th>
+                                                                                <th>Class Registered</th>
+                                                                                <th>Date of Registration</th>";
 echo $Print1;
 echo "<th><span class=\"icomoon-icon-cancel tip\" title=\"Delete\"></span></th>";
 $Print2 = "</tr>
-									</thead>
-									<tbody>";
+                                                                </thead>
+                                                                <tbody>";
 echo $Print2;
 $Print4 = "</tbody>
-								</table>";
+                                                        </table>";
 echo $Print4;
 $PrintRegistrationList = "$Print1 $Print2 $Print3 $Print4";
 $_SESSION['PrintRegistrationList'] = $PrintRegistrationList;
@@ -341,10 +350,10 @@ $PrintHeading = "Showing List of Registration";
 $_SESSION['PrintRegistrationHeading'] = $PrintHeading;
 $_SESSION['PrintCategory'] = "Registration";
 ?>
-                            </div>
-                        </div>
                     </div>
                 </div>
+            </div>
+        </div>
             </div>
         </div>
 
