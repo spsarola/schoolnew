@@ -28,7 +28,7 @@ $query = "SELECT RegistrationId,Session,Status,StudentName,FatherName,FatherMobi
             $UniqueId=$_POST['UniqueId']
         ?>
             
-        <form class="form-horizontal" action="StudentPrint.php" name="StudentPrint" id="AdmissionReport" method="Post" target="_blank">
+        <form class="form-horizontal" action="StudentPrint.php" name="StudentPrint" id="printDetailForm" method="Post" target="_blank">
         <div class="row-fluid">
             <div class="span12">
                 <div class="box chart gradient">
@@ -43,65 +43,32 @@ $query = "SELECT RegistrationId,Session,Status,StudentName,FatherName,FatherMobi
                             <div class="form-row row-fluid">
                                 <div class="span2">
                                     <div class="row-fluid">
-                                        <label><input tabindex="2" class="styled" id="StudentName" type="checkbox" name="StudentName" value="StudentName" />Student Name</label>
+                                        <label><input tabindex="2" class="styled" id="StudentName" type="checkbox" name="std_check[]" value="StudentName" checked="checked" disabled="disabled" />Student Name</label>
                                     </div>
                                 </div>
                                 <div class="span2">
                                     <div class="row-fluid">
-                                        <label><input tabindex="2" class="styled" id="Gender" type="checkbox" name="Gender" value="Gender" />Gender</label>
+                                        <label><input tabindex="2" class="styled" id="Gender" type="checkbox" name="std_check[]" value="Gender" checked="checked" disabled="disabled" />Gender</label>
                                     </div>
                                 </div>
                                 <div class="span2">
                                     <div class="row-fluid">
-                                        <label><input tabindex="2" class="styled" id="DOB" type="checkbox" name="DOB" value="DOB" />DOB</label>
+                                        <label><input tabindex="2" class="styled" id="DOB" type="checkbox" name="std_check[]" value="DOB" checked="checked" disabled="disabled" />DOB</label>
                                     </div>
                                 </div>
                                 <div class="span2">
                                     <div class="row-fluid">
-                                        <label><input tabindex="2" class="styled" id="StudentClass" type="checkbox" name="StudentClass" value="StudentClass" />Student Class</label>
+                                        <label><input tabindex="2" class="styled" id="StudentClass" type="checkbox" name="std_check[]" value="StudentClass" checked="checked" disabled="disabled" />Student Class</label>
                                     </div>
                                 </div>
                                 <div class="span2">
                                     <div class="row-fluid">
-                                        <label><input tabindex="2" class="styled" id="FatherName" type="checkbox" name="FatherName" value="FatherName" />Father Name</label>
+                                        <label><input tabindex="2" class="styled" id="FatherName" type="checkbox" name="std_check[]" value="FatherName" checked="checked" disabled="disabled" />Father Name</label>
                                     </div>
                                 </div>
                                 <div class="span2">
                                     <div class="row-fluid">
-                                        <label><input tabindex="2" class="styled" id="MotherName" type="checkbox" name="MotherName" value="MotherName" />Mother Name</label>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="form-row row-fluid">
-                                <div class="span2">
-                                    <div class="row-fluid">
-                                        <label><input tabindex="2" class="styled" id="Caste" type="checkbox" name="Caste" value="Caste" />Caste</label>
-                                    </div>
-                                </div>
-                                <div class="span2">
-                                    <div class="row-fluid">
-                                        <label><input tabindex="2" class="styled" id="Category" type="checkbox" name="Category" value="Category" />Category</label>
-                                    </div>
-                                </div>
-                                <div class="span2">
-                                    <div class="row-fluid">
-                                        <label><input tabindex="2" class="styled" id="SSSMID" type="checkbox" name="SSSMID" value="SSSMID" />SSSMID</label>
-                                    </div>
-                                </div>
-                                <div class="span2">
-                                    <div class="row-fluid">
-                                        <label><input tabindex="2" class="styled" id="Family_SSSMID" type="checkbox" name="Family_SSSMID" value="Family_SSSMID" />Family SSSMID</label>
-                                    </div>
-                                </div>
-                                <div class="span2">
-                                    <div class="row-fluid">
-                                        <label><input tabindex="2" class="styled" id="Aadhar_No" type="checkbox" name="Aadhar_No" value="Aadhar_No" />Aadhar Number</label>
-                                    </div>
-                                </div>
-                                <div class="span2">
-                                    <div class="row-fluid">
-                                        <label><input tabindex="2" class="styled" id="Bank_Account_Number" type="checkbox" name="Bank_Account_Number" value="Bank_Account_Number" />Bank Account Number</label>
+                                        <label><input tabindex="2" class="styled" id="MotherName" type="checkbox" name="std_check[]" value="MotherName" checked="checked" disabled="disabled" />Mother Name</label>
                                     </div>
                                 </div>
                             </div>
@@ -109,12 +76,45 @@ $query = "SELECT RegistrationId,Session,Status,StudentName,FatherName,FatherMobi
                             <div class="form-row row-fluid">
                                 <div class="span2">
                                     <div class="row-fluid">
-                                        <label><input tabindex="2" class="styled" id="IFSC_Code" type="checkbox" name="IFSC_Code" value="IFSC_Code" />IFSC Code</label>
+                                        <label><input tabindex="2" class="styled" id="Caste" type="checkbox" name="std_check[]" value="Caste" />Caste</label>
                                     </div>
                                 </div>
                                 <div class="span2">
                                     <div class="row-fluid">
-                                        <label><input tabindex="2" class="styled" id="BloodGroup" type="checkbox" name="BloodGroup" value="BloodGroup" />BloodGroup</label>
+                                        <label><input tabindex="2" class="styled" id="Category" type="checkbox" name="std_check[]" value="Category" />Category</label>
+                                    </div>
+                                </div>
+                                <div class="span2">
+                                    <div class="row-fluid">
+                                        <label><input tabindex="2" class="styled" id="SSSMID" type="checkbox" name="std_check[]" value="SSSMID" />SSSMID</label>
+                                    </div>
+                                </div>
+                                <div class="span2">
+                                    <div class="row-fluid">
+                                        <label><input tabindex="2" class="styled" id="Family_SSSMID" type="checkbox" name="std_check[]" value="Family_SSSMID" />Family SSSMID</label>
+                                    </div>
+                                </div>
+                                <div class="span2">
+                                    <div class="row-fluid">
+                                        <label><input tabindex="2" class="styled" id="Aadhar_No" type="checkbox" name="std_check[]" value="Aadhar_No" />Aadhar Number</label>
+                                    </div>
+                                </div>
+                                <div class="span2">
+                                    <div class="row-fluid">
+                                        <label><input tabindex="2" class="styled" id="Bank_Account_Number" type="checkbox" name="std_check[]" value="Bank_Account_Number" />Bank Account Number</label>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-row row-fluid">
+                                <div class="span2">
+                                    <div class="row-fluid">
+                                        <label><input tabindex="2" class="styled" id="IFSC_Code" type="checkbox" name="std_check[]" value="IFSC_Code" />IFSC Code</label>
+                                    </div>
+                                </div>
+                                <div class="span2">
+                                    <div class="row-fluid">
+                                        <label><input tabindex="2" class="styled" id="BloodGroup" type="checkbox" name="std_check[]" value="BloodGroup" checked="checked" disabled="disabled" />BloodGroup</label>
                                     </div>
                                 </div>
                             </div>
@@ -136,39 +136,39 @@ $query = "SELECT RegistrationId,Session,Status,StudentName,FatherName,FatherMobi
                         <div class="form-row row-fluid">
                             <div class="span2">
                                 <div class="row-fluid">
-                                    <label><input tabindex="2" class="styled" id="PresentAddress" type="checkbox" name="PresentAddress" value="PresentAddress" />Present Address</label>
+                                    <label><input tabindex="2" class="styled" id="PresentAddress" type="checkbox" name="std_check[]" value="PresentAddress" />Present Address</label>
                                 </div>
                             </div>
                             <div class="span2">
                                 <div class="row-fluid">
-                                    <label><input tabindex="2" class="styled" id="PermanentAddress" type="checkbox" name="PermanentAddress" value="PermanentAddress" />Permanent Address</label>
+                                    <label><input tabindex="2" class="styled" id="PermanentAddress" type="checkbox" name="std_check[]" value="PermanentAddress" />Permanent Address</label>
                                 </div>
                             </div>
                             <div class="span2">
                                 <div class="row-fluid">
-                                    <label><input tabindex="2" class="styled" id="Mobile" type="checkbox" name="Mobile" value="Mobile" />Mobile</label>
+                                    <label><input tabindex="2" class="styled" id="Mobile" type="checkbox" name="std_check[]" value="Mobile" checked="checked" disabled="disabled" />Mobile</label>
                                 </div>
                             </div>
                             <div class="span2">
                                 <div class="row-fluid">
-                                    <label><input tabindex="2" class="styled" id="FatherMobile" type="checkbox" name="FatherMobile" value="FatherMobile" />Father Mobile</label>
+                                    <label><input tabindex="2" class="styled" id="FatherMobile" type="checkbox" name="std_check[]" value="FatherMobile" checked="checked" disabled="disabled" />Father Mobile</label>
                                 </div>
                             </div>
                             <div class="span2">
                                 <div class="row-fluid">
-                                    <label><input tabindex="2" class="styled" id="MotherMobile" type="checkbox" name="MotherMobile" value="MotherMobile" />Mother Mobile</label>
+                                    <label><input tabindex="2" class="styled" id="MotherMobile" type="checkbox" name="std_check[]" value="MotherMobile" checked="checked" disabled="disabled" />Mother Mobile</label>
                                 </div>
                             </div>
                             <div class="span2">
                                 <div class="row-fluid">
-                                    <label><input tabindex="2" class="styled" id="Landline" type="checkbox" name="Landline" value="Landline" />Landline</label>
+                                    <label><input tabindex="2" class="styled" id="Landline" type="checkbox" name="std_check[]" value="Landline" />Landline</label>
                                 </div>
                             </div>
                         </div>
                         <div class="form-row row-fluid">
                             <div class="span2">
                                 <div class="row-fluid">
-                                    <label><input tabindex="2" class="styled" id="AlternateMobile" type="checkbox" name="AlternateMobile" value="AlternateMobile" />Alternate Mobile</label>
+                                    <label><input tabindex="2" class="styled" id="AlternateMobile" type="checkbox" name="std_check[]" value="AlternateMobile" />Alternate Mobile</label>
                                 </div>
                             </div>
                         </div>
@@ -176,86 +176,6 @@ $query = "SELECT RegistrationId,Session,Status,StudentName,FatherName,FatherMobi
                 </div>
             </div>
         </div>
-        <div class="row-fluid">
-            <div class="span12">
-                <div class="box chart gradient">
-                    <div class="title">
-                        <h4>
-                            <span>Qualification</span>
-                        </h4>
-                        <a href="#" class="minimize" style="display: inline; overflow: hidden; height: 1px; padding: 0px; margin: 0px; width: 1px; opacity: 0;">Minimize</a>
-                    </div>
-                    <div class="content" style="padding:5px;">
-                        <div class="form-row row-fluid">
-                            <div class="span2">
-                                <div class="row-fluid">
-                                    <label><input tabindex="2" class="styled" id="FatherDateOfBirth" type="checkbox" name="FatherDateOfBirth" value="FatherDateOfBirth" />Father DateOfBirth</label>
-                                </div>
-                            </div>
-                            
-                            <div class="span2">
-                                <div class="row-fluid">
-                                    <label><input tabindex="2" class="styled" id="FatherEmail" type="checkbox" name="FatherEmail" value="FatherEmail" />Father Email</label>
-                                </div>
-                            </div>
-                            <div class="span2">
-                                <div class="row-fluid">
-                                    <label><input tabindex="2" class="styled" id="FatherQualification" type="checkbox" name="FatherQualification" value="FatherQualification" />Father Qualification</label>
-                                </div>
-                            </div>
-                            <div class="span2">
-                                <div class="row-fluid">
-                                    <label><input tabindex="2" class="styled" id="FatherOccupation" type="checkbox" name="FatherOccupation" value="FatherOccupation" />Father Occupation</label>
-                                </div>
-                            </div>
-                            <div class="span2">
-                                <div class="row-fluid">
-                                    <label><input tabindex="2" class="styled" id="FatherDesignation" type="checkbox" name="FatherDesignation" value="FatherDesignation" />Father Designation</label>
-                                </div>
-                            </div>
-                            <div class="span2">
-                                <div class="row-fluid">
-                                    <label><input tabindex="2" class="styled" id="FatherOrganization" type="checkbox" name="FatherOrganization" value="FatherOrganization" />FatherOrganization</label>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="form-row row-fluid">
-                            <div class="span2">
-                                <div class="row-fluid">
-                                    <label><input tabindex="2" class="styled" id="MotherDateOfBirth" type="checkbox" name="MotherDateOfBirth" value="MotherDateOfBirth" />Mother DateOfBirth</label>
-                                </div>
-                            </div>
-                            <div class="span2">
-                                <div class="row-fluid">
-                                    <label><input tabindex="2" class="styled" id="MotherEmail" type="checkbox" name="MotherEmail" value="MotherEmail" />Mother Email</label>
-                                </div>
-                            </div>
-                            <div class="span2">
-                                <div class="row-fluid">
-                                    <label><input tabindex="2" class="styled" id="MotherQualification" type="checkbox" name="MotherQualification" value="MotherQualification" />Mother Qualification</label>
-                                </div>
-                            </div>
-                            <div class="span2">
-                                <div class="row-fluid">
-                                    <label><input tabindex="2" class="styled" id="MotherOccupation" type="checkbox" name="MotherOccupation" value="MotherOccupation" />Mother Occupation</label>
-                                </div>
-                            </div>
-                            <div class="span2">
-                                <div class="row-fluid">
-                                    <label><input tabindex="2" class="styled" id="MotherDesignation" type="checkbox" name="MotherDesignation" value="MotherDesignation" />Mother Designation</label>
-                                </div>
-                            </div>
-                            <div class="span2">
-                                <div class="row-fluid">
-                                    <label><input tabindex="2" class="styled" id="MotherOrganization" type="checkbox" name="MotherOrganization" value="MotherOrganization" />Mother Organization</label>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        
         <div class="row-fluid">
             <div class="span12">
                 <div class="box chart gradient">
@@ -269,24 +189,109 @@ $query = "SELECT RegistrationId,Session,Status,StudentName,FatherName,FatherMobi
                         <div class="form-row row-fluid">
                             <div class="span2">
                                 <div class="row-fluid">
-                                    <label><input tabindex="2" class="styled" id="BoardUniversity" type="checkbox" name="BoardUniversity" value="BoardUniversity" />BoardUniversity</label>
+                                    <label><input tabindex="2" class="styled" id="FatherDateOfBirth" type="checkbox" name="std_check[]" value="FatherDateOfBirth" />Father DateOfBirth</label>
+                                </div>
+                            </div>
+                            
+                            <div class="span2">
+                                <div class="row-fluid">
+                                    <label><input tabindex="2" class="styled" id="FatherEmail" type="checkbox" name="std_check[]" value="FatherEmail" />Father Email</label>
                                 </div>
                             </div>
                             <div class="span2">
                                 <div class="row-fluid">
-                                    <label><input tabindex="2" class="styled" id="Class" type="checkbox" name="Class" value="Class" />Class</label>
+                                    <label><input tabindex="2" class="styled" id="FatherQualification" type="checkbox" name="std_check[]" value="FatherQualification" />Father Qualification</label>
                                 </div>
                             </div>
                             <div class="span2">
                                 <div class="row-fluid">
-                                    <label><input tabindex="2" class="styled" id="Year" type="checkbox" name="Year" value="Year" />Year</label>
+                                    <label><input tabindex="2" class="styled" id="FatherOccupation" type="checkbox" name="std_check[]" value="FatherOccupation" />Father Occupation</label>
                                 </div>
                             </div>
                             <div class="span2">
                                 <div class="row-fluid">
-                                    <label><input tabindex="2" class="styled" id="Marks" type="checkbox" name="Marks" value="Marks" />Marks</label>
+                                    <label><input tabindex="2" class="styled" id="FatherDesignation" type="checkbox" name="std_check[]" value="FatherDesignation" />Father Designation</label>
                                 </div>
                             </div>
+                            <div class="span2">
+                                <div class="row-fluid">
+                                    <label><input tabindex="2" class="styled" id="FatherOrganization" type="checkbox" name="std_check[]" value="FatherOrganization" />FatherOrganization</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-row row-fluid">
+                            <div class="span2">
+                                <div class="row-fluid">
+                                    <label><input tabindex="2" class="styled" id="MotherDateOfBirth" type="checkbox" name="std_check[]" value="MotherDateOfBirth" />Mother DateOfBirth</label>
+                                </div>
+                            </div>
+                            <div class="span2">
+                                <div class="row-fluid">
+                                    <label><input tabindex="2" class="styled" id="MotherEmail" type="checkbox" name="std_check[]" value="MotherEmail" />Mother Email</label>
+                                </div>
+                            </div>
+                            <div class="span2">
+                                <div class="row-fluid">
+                                    <label><input tabindex="2" class="styled" id="MotherQualification" type="checkbox" name="std_check[]" value="MotherQualification" />Mother Qualification</label>
+                                </div>
+                            </div>
+                            <div class="span2">
+                                <div class="row-fluid">
+                                    <label><input tabindex="2" class="styled" id="MotherOccupation" type="checkbox" name="std_check[]" value="MotherOccupation" />Mother Occupation</label>
+                                </div>
+                            </div>
+                            <div class="span2">
+                                <div class="row-fluid">
+                                    <label><input tabindex="2" class="styled" id="MotherDesignation" type="checkbox" name="std_check[]" value="MotherDesignation" />Mother Designation</label>
+                                </div>
+                            </div>
+                            <div class="span2">
+                                <div class="row-fluid">
+                                    <label><input tabindex="2" class="styled" id="MotherOrganization" type="checkbox" name="std_check[]" value="MotherOrganization" />Mother Organization</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="row-fluid">
+            <div class="span12">
+                <div class="box chart gradient">
+                    <div class="title">
+                        <h4>
+                            <span>Qualification</span>
+                        </h4>
+                        <a href="#" class="minimize" style="display: inline; overflow: hidden; height: 1px; padding: 0px; margin: 0px; width: 1px; opacity: 0;">Minimize</a>
+                    </div>
+                    <div class="content" style="padding:5px;">
+                        <div class="form-row row-fluid">
+                            <div class="span2">
+                                <div class="row-fluid">
+                                    <label><input tabindex="2" class="styled" id="qualification" type="checkbox" name="std_check[]" value="qualification" />Qualification Table</label>
+                                </div>
+                            </div>
+<!--                            <div class="span2">
+                                <div class="row-fluid">
+                                    <label><input tabindex="2" class="styled" id="BoardUniversity" type="checkbox" name="std_check[]" value="BoardUniversity" />BoardUniversity</label>
+                                </div>
+                            </div>
+                            <div class="span2">
+                                <div class="row-fluid">
+                                    <label><input tabindex="2" class="styled" id="Class" type="checkbox" name="std_check[]" value="Class" />Class</label>
+                                </div>
+                            </div>
+                            <div class="span2">
+                                <div class="row-fluid">
+                                    <label><input tabindex="2" class="styled" id="Year" type="checkbox" name="std_check[]" value="Year" />Year</label>
+                                </div>
+                            </div>
+                            <div class="span2">
+                                <div class="row-fluid">
+                                    <label><input tabindex="2" class="styled" id="Marks" type="checkbox" name="std_check[]" value="Marks" />Marks</label>
+                                </div>
+                            </div>-->
                             
                         </div>
                     </div>
@@ -306,22 +311,22 @@ $query = "SELECT RegistrationId,Session,Status,StudentName,FatherName,FatherMobi
                         <div class="form-row row-fluid">
                             <div class="span2">
                                 <div class="row-fluid">
-                                    <label><input tabindex="2" class="styled" id="DateOfTermination" type="checkbox" name="DateOfTermination" value="DateOfTermination" />Date Of Termination</label>
+                                    <label><input tabindex="2" class="styled" id="DateOfTermination" type="checkbox" name="std_check[]" value="DateOfTermination" />Date Of Termination</label>
                                 </div>
                             </div>
                             <div class="span2">
                                 <div class="row-fluid">
-                                    <label><input tabindex="2" class="styled" id="TerminationReason" type="checkbox" name="TerminationReason" value="TerminationReason" />Termination Reason</label>
+                                    <label><input tabindex="2" class="styled" id="TerminationReason" type="checkbox" name="std_check[]" value="TerminationReason" />Termination Reason</label>
                                 </div>
                             </div>
                             <div class="span2">
                                 <div class="row-fluid">
-                                    <label><input tabindex="2" class="styled" id="StudentFeeId" type="checkbox" name="StudentFeeId" value="StudentFeeId" />Student FeeId</label>
+                                    <label><input tabindex="2" class="styled" id="StudentFeeId" type="checkbox" name="std_check[]" value="StudentFeeId" />Student FeeId</label>
                                 </div>
                             </div>
                             <div class="span2">
                                 <div class="row-fluid">
-                                    <label><input tabindex="2" class="styled" id="Remarks" type="checkbox" name="Remarks" value="Remarks" />Remarks</label>
+                                    <label><input tabindex="2" class="styled" id="Remarks" type="checkbox" name="std_check[]" value="Remarks" />Remarks</label>
                                 </div>
                             </div>
                             
@@ -344,6 +349,12 @@ $query = "SELECT RegistrationId,Session,Status,StudentName,FatherName,FatherMobi
         } ?>
     </div>
 </div>
+<script>
+    $("#printDetailForm").submit(function() {
+        $("input[type='checkbox']").removeAttr("disabled");
+        $("input[type='checkbox']").prop("checked","checked");
+    });
+</script>
 <?php
 include("Template/Footer.php");
 ?>

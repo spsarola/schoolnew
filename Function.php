@@ -390,4 +390,23 @@ if (!function_exists('FilterSqlInjection')) {
     }
 
 }
+if (!function_exists('createDir')) {
+
+    function createDir($path) {
+    if (!file_exists($path)) {
+        $old_mask = umask(0);
+        mkdir($path, 0777, TRUE);
+        umask($old_mask);
+    }
+}
+if (!function_exists('delete_col')) {
+
+    function delete_col(&$array, $offset) {
+    return array_walk($array, function (&$v) use ($offset) {
+        array_splice($v, $offset, 1);
+    });
+}
+}
+
+}
 ?>

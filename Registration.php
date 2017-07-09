@@ -19,8 +19,10 @@ include("Template/Sidebar.php");
 
 <div id="content" class="clearfix">
     <div class="contentwrapper">
-        <?php $BreadCumb = "Student Registration";
-        BreadCumb($BreadCumb); ?>
+        <?php
+        $BreadCumb = "Student Registration";
+        BreadCumb($BreadCumb);
+        ?>
 
         <?php DisplayNotification(); ?>
 
@@ -162,11 +164,34 @@ include("Template/Sidebar.php");
 
         <div class="row-fluid">
             <div class="span12">
-                <form action="Action" name="ExportStudentData" id="ExportStudentData" method="Post">
-                    <input type="hidden" name="RandomNumber" value="<?php echo $TOKEN; ?>" readonly>
-                    <input type="hidden" name="Action" value="ExportStudentData" readonly>
-                    <button type="submit" tabindex="7" class="btn btn-info">Export CSV</button>
-                </form>
+                <div class="box chart gradient">
+                    <div class="title">
+                        <h4>
+                            <span>Student Import/Export Data</span>
+                        </h4>
+                        <a href="#" class="minimize">Minimize</a>
+                    </div>
+                    <div class="content" style="padding:5px;">
+                        <div class="row-fluid">
+                            <div class="span4 pull-right">
+                                <form action="Action" name="ExportStudentData" id="ExportStudentData" method="Post">
+                                    <input type="hidden" name="RandomNumber" value="<?php echo $TOKEN; ?>" readonly>
+                                    <input type="hidden" name="Action" value="ExportStudentData" readonly>
+                                    <button type="submit" tabindex="7" class="btn btn-info">Export CSV</button>
+                                </form>
+                            </div>
+                            <div class="span8">
+                                <form action="Action" name="ImportStudentData" id="ImportStudentData" method="Post" enctype="multipart/form-data">
+                                    <input type="hidden" name="RandomNumber" value="<?php echo $TOKEN; ?>" readonly>
+                                    <input type="hidden" name="Action" value="ImportStudentData" readonly>
+                                    <input type="file" name="csv_file" id="file" size="20" style="opacity: 0;">
+                                    <button type="submit" tabindex="7" class="btn btn-info">Import CSV</button>
+                                </form>
+                            </div>
+
+                        </div>    
+                    </div>    
+                </div>    
             </div>    
         </div>   
         <div class="row-fluid">
@@ -240,78 +265,80 @@ include("Template/Sidebar.php");
                                     </div>
                                 </div>
                             </div>
-                                <div class="form-row row-fluid">
-                                    <div class="span12">
-                                        <div class="row-fluid">
-                                            <label class="form-label span4" for="Bank_Account_Number">Bank A/c No</label>
-                                            <input tabindex="7" class="span8" id="Bank_Account_Number" type="text" name="Bank_Account_Number" value="" />
-                                        </div>
+                            <div class="form-row row-fluid">
+                                <div class="span12">
+                                    <div class="row-fluid">
+                                        <label class="form-label span4" for="Bank_Account_Number">Bank A/c No</label>
+                                        <input tabindex="7" class="span8" id="Bank_Account_Number" type="text" name="Bank_Account_Number" value="" />
                                     </div>
-                                </div>
-                                    <div class="form-row row-fluid">
-                                        <div class="span12">
-                                            <div class="row-fluid">
-                                                <label class="form-label span4" for="IFSC_Code">IFSC_Code</label>
-                                                <input tabindex="8" class="span8" id="IFSC_Code" type="text" name="IFSC_Code" value="" />
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <div class="form-row row-fluid">
-                                        <div class="span12">
-                                            <div class="row-fluid">
-                                                <label class="form-label span4" for="Mobile">Mobile Number</label>
-                                                <input class="span8" tabindex="9" id="Mobile" type="text" name="Mobile" value="" />
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="form-row row-fluid">
-                                        <div class="span12">
-                                            <div class="row-fluid">
-                                                <label class="form-label span4" for="Class">Class</label>
-                                                <div class="controls sel span8">   
-                                                    <select tabindex="10" name="Class" id="Class" class="nostyle" style="width:100%;" >
-                                                        <option></option>
-                                                        <?php echo $ListAllClass; ?>
-                                                    </select>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="form-row row-fluid">
-                                        <div class="span12">
-                                            <div class="row-fluid">
-                                                <label class="form-label span4" for="CallResponse">Gender </label> 
-                                                <div class="span8 controls sel">   
-                                                    <?php
-                                                    GetCategoryValue('Gender', 'Gender', '', '', '', '', '', 1, '');
-                                                    ?>
-                                                </div> 
-                                            </div>
-                                        </div> 
-                                    </div>
-                                    <div class="form-row row-fluid">
-                                        <div class="span12">
-                                            <div class="row-fluid">
-                                                <label class="form-label span4" for="DOR">Date of Registration</label>
-                                                <input class="span8" readonly tabindex="11" id="DOR" type="text" name="DOR" value="" />
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <input type="hidden" name="RandomNumber" value="<?php echo $TOKEN; ?>" readonly>
-                                    <input type="hidden" name="Action" value="StudentRegistration" readonly>
-<?php $ButtonContent = "Save";
-ActionButton($ButtonContent, 7); ?>
-                                    </form>
                                 </div>
                             </div>
-                    </div>					
+                            <div class="form-row row-fluid">
+                                <div class="span12">
+                                    <div class="row-fluid">
+                                        <label class="form-label span4" for="IFSC_Code">IFSC_Code</label>
+                                        <input tabindex="8" class="span8" id="IFSC_Code" type="text" name="IFSC_Code" value="" />
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-row row-fluid">
+                                <div class="span12">
+                                    <div class="row-fluid">
+                                        <label class="form-label span4" for="Mobile">Mobile Number</label>
+                                        <input class="span8" tabindex="9" id="Mobile" type="text" name="Mobile" value="" />
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-row row-fluid">
+                                <div class="span12">
+                                    <div class="row-fluid">
+                                        <label class="form-label span4" for="Class">Class</label>
+                                        <div class="controls sel span8">   
+                                            <select tabindex="10" name="Class" id="Class" class="nostyle" style="width:100%;" >
+                                                <option></option>
+                                                <?php echo $ListAllClass; ?>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-row row-fluid">
+                                <div class="span12">
+                                    <div class="row-fluid">
+                                        <label class="form-label span4" for="CallResponse">Gender </label> 
+                                        <div class="span8 controls sel">   
+                                            <?php
+                                            GetCategoryValue('Gender', 'Gender', '', '', '', '', '', 1, '');
+                                            ?>
+                                        </div> 
+                                    </div>
+                                </div> 
+                            </div>
+                            <div class="form-row row-fluid">
+                                <div class="span12">
+                                    <div class="row-fluid">
+                                        <label class="form-label span4" for="DOR">Date of Registration</label>
+                                        <input class="span8" readonly tabindex="11" id="DOR" type="text" name="DOR" value="" />
+                                    </div>
+                                </div>
+                            </div>
+                            <input type="hidden" name="RandomNumber" value="<?php echo $TOKEN; ?>" readonly>
+                            <input type="hidden" name="Action" value="StudentRegistration" readonly>
+                            <?php
+                            $ButtonContent = "Save";
+                            ActionButton($ButtonContent, 7);
+                            ?>
+                        </form>
+                    </div>
+                </div>
+            </div>					
             <div class="span8">
                 <div class="box gradient">
                     <div class="title">
                         <h4>
                             <span>Registration List</span>
-<?php if ($count3 > 0) { ?>
+                            <?php if ($count3 > 0) { ?>
                                 <div class="PrintClass">
                                     <form method=post action=Print target=_blank>
                                         <input type="hidden" name="Action" value="Print" readonly>
@@ -321,13 +348,13 @@ ActionButton($ButtonContent, 7); ?>
                                         <button class="icomoon-icon-printer-2 tip" title="Print Registration List"></button>
                                     </form>
                                 </div>
-<?php } ?>
+                            <?php } ?>
                         </h4>
                         <a href="#" class="minimize">Minimize</a>
                     </div>
                     <div class="content clearfix noPad">
-<?php
-$Print1 = "<table id=\"RegistrationTable\" cellpadding=\"0\" cellspacing=\"0\" border=\"0\" class=\"responsive dynamicTable display table table-bordered\" width=\"100%\">
+                        <?php
+                        $Print1 = "<table id=\"RegistrationTable\" cellpadding=\"0\" cellspacing=\"0\" border=\"0\" class=\"responsive dynamicTable display table table-bordered\" width=\"100%\">
                                                                 <thead>
                                                                         <tr>
                                                                                 <th>Student Name</th>
@@ -335,158 +362,158 @@ $Print1 = "<table id=\"RegistrationTable\" cellpadding=\"0\" cellspacing=\"0\" b
                                                                                 <th>Mobile</th>
                                                                                 <th>Class Registered</th>
                                                                                 <th>Date of Registration</th>";
-echo $Print1;
-echo "<th><span class=\"icomoon-icon-cancel tip\" title=\"Delete\"></span></th>";
-$Print2 = "</tr>
+                        echo $Print1;
+                        echo "<th><span class=\"icomoon-icon-cancel tip\" title=\"Delete\"></span></th>";
+                        $Print2 = "</tr>
                                                                 </thead>
                                                                 <tbody>";
-echo $Print2;
-$Print4 = "</tbody>
+                        echo $Print2;
+                        $Print4 = "</tbody>
                                                         </table>";
-echo $Print4;
-$PrintRegistrationList = "$Print1 $Print2 $Print3 $Print4";
-$_SESSION['PrintRegistrationList'] = $PrintRegistrationList;
-$PrintHeading = "Showing List of Registration";
-$_SESSION['PrintRegistrationHeading'] = $PrintHeading;
-$_SESSION['PrintCategory'] = "Registration";
-?>
+                        echo $Print4;
+                        $PrintRegistrationList = "$Print1 $Print2 $Print3 $Print4";
+                        $_SESSION['PrintRegistrationList'] = $PrintRegistrationList;
+                        $PrintHeading = "Showing List of Registration";
+                        $_SESSION['PrintRegistrationHeading'] = $PrintHeading;
+                        $_SESSION['PrintCategory'] = "Registration";
+                        ?>
                     </div>
                 </div>
             </div>
         </div>
-            </div>
-        </div>
+    </div>
+</div>
 
-        <script type="text/javascript">
-            $(document).ready(function () {
+<script type="text/javascript">
+    $(document).ready(function () {
 
-                $('#RegistrationTable').dataTable({
-                    "sPaginationType": "two_button",
-                    "bJQueryUI": false,
-                    "bAutoWidth": false,
-                    "bLengthChange": false,
-                    "bProcessing": true,
-                    "bDeferRender": true,
-                    "sAjaxSource": "plugins/Data/data1.txt",
-                    "fnInitComplete": function (oSettings, json) {
-                        $('.dataTables_filter>label>input').attr('id', 'search');
-                    }
-                });
+        $('#RegistrationTable').dataTable({
+            "sPaginationType": "two_button",
+            "bJQueryUI": false,
+            "bAutoWidth": false,
+            "bLengthChange": false,
+            "bProcessing": true,
+            "bDeferRender": true,
+            "sAjaxSource": "plugins/Data/data1.txt",
+            "fnInitComplete": function (oSettings, json) {
+                $('.dataTables_filter>label>input').attr('id', 'search');
+            }
+        });
 
-                $("#Class").select2();
-                $('#Class').select2({placeholder: "Select"});
-                $("#Gender").select2();
-                $('#Gender').select2({placeholder: "Select"});
-                if ($('#DOR').length) {
-                    $('#DOR').datetimepicker({yearRange: "-180:+0", dateFormat: 'dd-mm-yy', changeMonth: true, changeYear: true});
-                }
-                $("input, textarea, select").not('.nostyle').uniform();
-                $("#StudentRegistration").validate({
-                    ignore: 'input[type="hidden"]',
-                    rules: {
-                        StudentName: {
-                            required: true,
-                        },
-                        FatherName: {
-                            required: true,
-                        },
-                        MotherName: {
-                            required: true,
-                        },
-                        SSSMID: {
-                            required: true,
-                        },
-                        Family_SSSMID: {
-                            required: true,
-                        },
-                        Aadhar_No: {
-                            required: true,
-                        },
-                        Bank_Account_Number: {
-                            required: true,
-                        },
-                        IFSC_Code: {
-                            required: true,
-                        },
-                        Class: {
-                            required: true,
-                        },
-                        DOR: {
-                            required: true,
-                        },
-                        Mobile: {
-                            required: true,
-                            remote: "RemoteValidation?Action=MobileValidation&Id=Mobile"
-                        }
-                    },
-                    messages: {
-                        StudentName: {
-                            required: "Please enter this!!",
-                        },
-                        FatherName: {
-                            required: "Please enter this!!",
-                        },
-                        MotherName: {
-                            required: "Please enter this!!",
-                        },
-                        SSSMID: {
-                            required: "Please enter this!!",
-                        },
-                        Family_SSSMID: {
-                            required: "Please enter this!!",
-                        },
-                        Aadhar_No: {
-                            required: "Please enter this!!",
-                        },
-                        Bank_Account_Number: {
-                            required: "Please enter this!!",
-                        },
-                        IFSC_Code: {
-                            required: "Please enter this!!",
-                        },
-                        Class: {
-                            required: "Please select this!!",
-                        },
-                        DOR: {
-                            required: "Please enter this!!",
-                        },
-                        Mobile: {
-                            required: "Please enter this!!",
-                            remote: jQuery.format("<?php echo $MOBILENUMBERDIGIT; ?> Digit Mobile number!!")
-                        }
-                    }
-                });
-            });
-            $("#DeleteStudentRegistration").validate({
-                rules: {
-                    Password: {
-                        required: true,
-                    }
+        $("#Class").select2();
+        $('#Class').select2({placeholder: "Select"});
+        $("#Gender").select2();
+        $('#Gender').select2({placeholder: "Select"});
+        if ($('#DOR').length) {
+            $('#DOR').datetimepicker({yearRange: "-180:+0", dateFormat: 'dd-mm-yy', changeMonth: true, changeYear: true});
+        }
+        $("input, textarea, select").not('.nostyle').uniform();
+        $("#StudentRegistration").validate({
+            ignore: 'input[type="hidden"]',
+            rules: {
+                StudentName: {
+                    required: true,
                 },
-                messages: {
-                    Password: {
-                        required: "Please enter this!!",
-                    }
+                FatherName: {
+                    required: true,
+                },
+                MotherName: {
+                    required: true,
+                },
+                SSSMID: {
+                    required: true,
+                },
+                Family_SSSMID: {
+                    required: true,
+                },
+                Aadhar_No: {
+                    required: true,
+                },
+                Bank_Account_Number: {
+                    required: true,
+                },
+                IFSC_Code: {
+                    required: true,
+                },
+                Class: {
+                    required: true,
+                },
+                DOR: {
+                    required: true,
+                },
+                Mobile: {
+                    required: true,
+                    remote: "RemoteValidation?Action=MobileValidation&Id=Mobile"
                 }
-            });
+            },
+            messages: {
+                StudentName: {
+                    required: "Please enter this!!",
+                },
+                FatherName: {
+                    required: "Please enter this!!",
+                },
+                MotherName: {
+                    required: "Please enter this!!",
+                },
+                SSSMID: {
+                    required: "Please enter this!!",
+                },
+                Family_SSSMID: {
+                    required: "Please enter this!!",
+                },
+                Aadhar_No: {
+                    required: "Please enter this!!",
+                },
+                Bank_Account_Number: {
+                    required: "Please enter this!!",
+                },
+                IFSC_Code: {
+                    required: "Please enter this!!",
+                },
+                Class: {
+                    required: "Please select this!!",
+                },
+                DOR: {
+                    required: "Please enter this!!",
+                },
+                Mobile: {
+                    required: "Please enter this!!",
+                    remote: jQuery.format("<?php echo $MOBILENUMBERDIGIT; ?> Digit Mobile number!!")
+                }
+            }
+        });
+    });
+    $("#DeleteStudentRegistration").validate({
+        rules: {
+            Password: {
+                required: true,
+            }
+        },
+        messages: {
+            Password: {
+                required: "Please enter this!!",
+            }
+        }
+    });
 
-            $(document).ready(function () {
-                $(function () {
-                    var baseURL = 'StudentAjaxTab';
-                    $('#StudentProfile').load(baseURL + '?Action=StudentProfile&Id=<?php echo $GetRegistrationId; ?>', function () {
-                        $('#myTabs').tab();
-                    });
-                    $('#myTabs').bind('show', function (e) {
-                        var pattern = /#.+/gi
-                        var contentID = e.target.toString().match(pattern)[0];
-                        $(contentID).load(baseURL + contentID.replace('#', '?Id=<?php echo $GetRegistrationId; ?>&Action='), function () {
-                            $('#myTabs').tab();
-                        });
-                    });
+    $(document).ready(function () {
+        $(function () {
+            var baseURL = 'StudentAjaxTab';
+            $('#StudentProfile').load(baseURL + '?Action=StudentProfile&Id=<?php echo $GetRegistrationId; ?>', function () {
+                $('#myTabs').tab();
+            });
+            $('#myTabs').bind('show', function (e) {
+                var pattern = /#.+/gi
+                var contentID = e.target.toString().match(pattern)[0];
+                $(contentID).load(baseURL + contentID.replace('#', '?Id=<?php echo $GetRegistrationId; ?>&Action='), function () {
+                    $('#myTabs').tab();
                 });
-
             });
-        </script>
+        });
+
+    });
+</script>
 <?php
 include("Template/Footer.php");
 ?>
