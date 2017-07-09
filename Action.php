@@ -5130,30 +5130,143 @@ elseif ($Action == "Translation") {
 ///////////////////////////////////////////////////////////////////////////////////////////
 elseif($Action == "ExportStudentData"){
     $file = fopen('first-track-report.csv', 'w+');
-    $data = array('RegistrationId', 'Session', 'StudentName', 'FatherName', 'FatherMobile', 'FatherDateOfBirth', 'FatherEmail', 'FatherQualification', 'FatherOccupation', 'FatherDesignation', 'FatherOrganization', 'MotherName', 'MotherMobile', 'MotherDateOfBirth', 'MotherEmail', 'MotherQualification', 'MotherOccupation', 'MotherDesignation', 'MotherOrganization', 'Mobile', 'SectionId', 'DOB', 'DOR', 'DOE', 'Landline', 'AlternateMobile', 'PresentAddress', 'PermanentAddress', 'BloodGroup', 'Caste', 'Category', 'Gender', 'Nationality', 'Username', 'DOL', 'DOLUsername', 'DOD', 'DODUsername', 'DateOfTermination', 'TerminationReason', 'TerminationRemarks', 'DOT', 'SSSMID', 'Family_SSSMID', 'Aadhar_No');
+    header ( "Content-type: application/vnd.ms-excel" );
+    //$data = array('RegistrationId', 'Session', 'StudentName', 'FatherName', 'FatherMobile', 'FatherDateOfBirth', 'FatherEmail', 'FatherQualification', 'FatherOccupation', 'FatherDesignation', 'FatherOrganization', 'MotherName', 'MotherMobile', 'MotherDateOfBirth', 'MotherEmail', 'MotherQualification', 'MotherOccupation', 'MotherDesignation', 'MotherOrganization', 'Mobile', 'SectionId', 'DOB', 'DOR', 'DOE', 'Landline', 'AlternateMobile', 'PresentAddress', 'PermanentAddress', 'BloodGroup', 'Caste', 'Category', 'Gender', 'Nationality', 'Username', 'DOL', 'DOLUsername', 'DOD', 'DODUsername', 'DateOfTermination', 'TerminationReason', 'TerminationRemarks', 'DOT', 'SSSMID', 'Family_SSSMID', 'Aadhar_No');
+    $data = array('StudentName', 'FatherName','MotherName','SSSMID', 'Family_SSSMID', 'Aadhar_No','Bank_Account_Number','IFSC_Code','Mobile','Class','Gender','DOR');
     fputcsv($file, $data);
-
+    foreach($data as $key=>$value){
+        echo $value;
+        if(count($data)!=($key+1)){
+            echo "\t";
+        }
+    }
+    echo "\n";
 
     $data = '';
-    $suppliers = '';
-    $items = mysqli_query($CONNECTION,"SELECT RegistrationId,Session,StudentName,FatherName,FatherMobile,FatherDateOfBirth,FatherEmail,FatherQualification,FatherOccupation,FatherDesignation,FatherOrganization,MotherName,MotherMobile,MotherDateOfBirth,MotherEmail,MotherQualification,MotherOccupation,MotherDesignation,MotherOrganization,Mobile,SectionId,DOB,DOR,DOE,Landline,AlternateMobile,PresentAddress,PermanentAddress,BloodGroup,Caste,Category,Gender,Nationality,Username,DOL,DOLUsername,DOD,DODUsername,DateOfTermination,TerminationReason,TerminationRemarks,DOT,SSSMID,Family_SSSMID,Aadhar_No FROM registration");
+    //$items = mysqli_query($CONNECTION,"SELECT RegistrationId,Session,StudentName,FatherName,FatherMobile,FatherDateOfBirth,FatherEmail,FatherQualification,FatherOccupation,FatherDesignation,FatherOrganization,MotherName,MotherMobile,MotherDateOfBirth,MotherEmail,MotherQualification,MotherOccupation,MotherDesignation,MotherOrganization,Mobile,SectionId,DOB,DOR,DOE,Landline,AlternateMobile,PresentAddress,PermanentAddress,BloodGroup,Caste,Category,Gender,Nationality,Username,DOL,DOLUsername,DOD,DODUsername,DateOfTermination,TerminationReason,TerminationRemarks,DOT,SSSMID,Family_SSSMID,Aadhar_No FROM registration");
+    $items = mysqli_query($CONNECTION,"SELECT StudentName,FatherName,MotherName,SSSMID,Family_SSSMID,Aadhar_No,Bank_Account_Number,IFSC_Code,
+            Mobile,
+            (SELECT CONCAT(c.ClassName,'-',s.SectionName) FROM class AS c,section AS s WHERE c.ClassId=s.ClassId AND c.ClassStatus='Active' AND s.SectionStatus='Active' AND c.Session='$CURRENTSESSION' AND s.SectionId =r.SectionId) AS Class,
+            Gender,DOR
+            FROM registration AS r");
     
-    while ($row = mysqli_fetch_array($items)) {
+    while ($row = mysqli_fetch_assoc($items)) {
+        
         $row=array_map('strval',$row);
         $row=array_map('html_entity_decode',$row);
         
-        $data = array($row['RegistrationId'], $row['Session'], $row['StudentName'], $row['FatherName'], $row['FatherMobile'], $row['FatherDateOfBirth'], $row['FatherEmail'], $row['FatherQualification'], $row['FatherOccupation'], $row['FatherDesignation'], $row['FatherOrganization'], $row['MotherName'], $row['MotherMobile'], $row['MotherDateOfBirth'], $row['MotherEmail'], $row['MotherQualification'], $row['MotherOccupation'], $row['MotherDesignation'], $row['MotherOrganization'], $row['Mobile'], $row['SectionId'], $row['DOB'], $row['DOR'], $row['DOE'], $row['Landline'], $row['AlternateMobile'], $row['PresentAddress'], $row['PermanentAddress'], $row['BloodGroup'], $row['Caste'], $row['Category'], $row['Gender'], $row['Nationality'], $row['Username'], $row['DOL'], $row['DOLUsername'], $row['DOD'], $row['DODUsername'], $row['DateOfTermination'], $row['TerminationReason'], $row['TerminationRemarks'], $row['DOT'], $row['SSSMID'], $row['Family_SSSMID'], $row['Aadhar_No']);
-        fputcsv($file, $data);
+        $row['Gender']=GetCategoryValueOfId($row['Gender'],'Gender');
+        $row['DOR']=  date('d/m/Y',$row['DOR']);
+        
+        $data = array($row['StudentName'], $row['FatherName'], $row['MotherName'], $row['SSSMID'], $row['Family_SSSMID'], $row['Aadhar_No'], $row['Bank_Account_Number'], $row['IFSC_Code'], 
+        $row['Mobile'], $row['Class'], $row['Gender'], $row['DOR']);
+        
+        echo $row['StudentName']."\t".$row['FatherName']."\t".$row['MotherName']."\t".'="'.$row['SSSMID'].'"'."\t".'="'.$row['Family_SSSMID'].'"'."\t".'="'.$row['Aadhar_No'].'"'."\t".'="'.$row['Bank_Account_Number'].'"'."\t".'="'.$row['IFSC_Code'].'"'."\t".
+            '="'.$row['Mobile'].'"'."\t".$row['Class']."\t".$row['Gender']."\t".$row['DOR']."\n";
+        
     }
+    $file = 'studentData.xls';
+    
+    header ( 'Content-Disposition: attachment; filename="' . basename($file) . '"' );
+} elseif ($Action == "ImportStudentData") {
+    
+    if (isset($_FILES) && count($_FILES) > 0) {
 
-    fclose($file);
+        $target_path = '';
+        if (isset($_FILES['csv_file']) && ($_FILES['csv_file']['tmp_name'] != '')) {
+            $extension = pathinfo($_FILES['csv_file']['name'], PATHINFO_EXTENSION);
+            $target_path = "upload/csv/";
+            if (!is_dir($target_path)) {
+                createDir($target_path);
+            }
+            $target_path = $target_path . 'studentData.' . $extension;
+            //$target_path = $target_path . "one_csv_file" . '.' . $extension;
+            move_uploaded_file($_FILES['csv_file']['tmp_name'], $target_path);
+        }
 
-    $file = 'first-track-report.csv';
+        $dataFileArr = array();
+        if (($handle = fopen($target_path, "r")) !== FALSE) {
+            while (($data = fgetcsv($handle, "|||")) !== FALSE) {
+                $num = count($data);
 
-    header('Content-type: text/csv');
-    header('Content-Disposition: attachment; filename="' . basename($file) . '"');
-    header('Content-Transfer-Encoding: binary');
-    readfile($file);
+                $dataArr = array();
+                $dataStr = "";
+                for ($c = 0; $c < $num; $c++) {
+                    $dataArr[] = $data[$c];
+                }
+                $dataStr = $dataArr;
+                $dataFileArr[] = $dataStr;
+            }
+            fclose($handle);
+        }
+        
+        echo "<pre>";
+        print_r($dataFileArr);
+        echo "</pre>";
+        exit;
+
+        $heading = array();
+        $rheading = $heading = $dataFileArr[0];
+
+        $required_key = array();
+        $required_key[] = array_search('SubValueID', $heading);
+        $required_key[] = array_search('MPN', $heading);
+        $required_key[] = array_search('Retailer Name', $heading);
+        $required_key[] = array_search('Product URL', $heading);
+        $required_key[] = array_search('Price', $heading);
+        $required_key[] = array_search('Delivery Price', $heading);
+        $required_key[] = array_search('Total Price', $heading);
+        $required_key[] = array_search('Extraction Date', $heading);
+
+        krsort($rheading);
+
+        //remove all other value (field which are no longer need)
+        foreach ($rheading as $r_key => $value) {
+            if (!in_array($r_key, $required_key)) {
+                delete_col($dataFileArr, $r_key);
+            }
+        }
+
+        //once we get the mpn key for insert or update record
+        $heading = $dataFileArr[0];
+        $mpn_key = array_search('MPN', $heading);
+
+        $tableDataArr = array();
+
+        foreach ($dataFileArr as $cell_key => $cell) {
+            $ebay = '0';
+            $is_ebay = strpos(strtolower(trim($cell[2])), 'ebay');
+            if ($cell_key > 0 && ( $is_ebay === false || $is_ebay != '0')) {
+                $tableDataArr[$cell[$mpn_key]][] = $cell;
+            }
+        }
+
+        $update_record = $insert_record = 0;
+
+        foreach ($tableDataArr as $mpn => $tableData) {
+
+            $check_query = mysql_query("SELECT * FROM `compare_price` WHERE `mpn`='" . trim($mpn) . "' LIMIT 1; ");
+
+            $supplier_query = mysql_query("SELECT supplier, markup FROM pricestore_products WHERE ordering_code='" . trim($mpn) . "' LIMIT 1; ");
+            $supplier = '-';
+            if (mysql_num_rows($supplier_query) > 0) {
+                $supplier_result = mysql_fetch_array($supplier_query);
+                $supplier = $supplier_result['supplier'];
+                $markup = $supplier_result['markup'];
+            }
+            if (mysql_num_rows($check_query) > 0) {
+                $check_query_data = mysql_fetch_array($check_query);
+                $update = mysql_query("UPDATE `compare_price` SET supplier='" . $supplier . "',`table_data`='" . json_encode($tableData) . "'  WHERE `compare_price_id`=" . $check_query_data['compare_price_id']);
+                $update_record++;
+            } else {
+                $insert = mysql_query("INSERT INTO `compare_price` (`mpn`, `table_data`, `supplier`) VALUES ('" . $mpn . "', '" . json_encode($tableData) . "','" . $supplier . "');");
+                $insert_record++;
+            }
+        }
+        echo "Record Updated: $update_record <br>";
+        echo "Record Inserted:$insert_record <br>";
+        echo 'Success';
+    }
 }
 ///////////////////////////////////////////////////////////////////////////////////////////
 else
