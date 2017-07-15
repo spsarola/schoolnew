@@ -5133,7 +5133,7 @@ elseif ($Action == "ExportStudentData") {
     //$data = array('RegistrationId', 'Session', 'StudentName', 'FatherName', 'FatherMobile', 'FatherDateOfBirth', 'FatherEmail', 'FatherQualification', 'FatherOccupation', 'FatherDesignation', 'FatherOrganization', 'MotherName', 'MotherMobile', 'MotherDateOfBirth', 'MotherEmail', 'MotherQualification', 'MotherOccupation', 'MotherDesignation', 'MotherOrganization', 'Mobile', 'SectionId', 'DOB', 'DOR', 'DOE', 'Landline', 'AlternateMobile', 'PresentAddress', 'PermanentAddress', 'BloodGroup', 'Caste', 'Category', 'Gender', 'Nationality', 'Username', 'DOL', 'DOLUsername', 'DOD', 'DODUsername', 'DateOfTermination', 'TerminationReason', 'TerminationRemarks', 'DOT', 'SSSMID', 'Family_SSSMID', 'Aadhar_No');
     $data = array('StudentName', 'FatherName', 'MotherName', 'SSSMID', 'Family_SSSMID', 'Aadhar_No', 'Bank_Account_Number', 'IFSC_Code', 'Mobile', 'Class', 'Gender', 'DOR');
     fputcsv($file, $data);
-
+    if(!isset($_POST['blankcsv'])){
     $data = '';
     //$items = mysqli_query($CONNECTION,"SELECT RegistrationId,Session,StudentName,FatherName,FatherMobile,FatherDateOfBirth,FatherEmail,FatherQualification,FatherOccupation,FatherDesignation,FatherOrganization,MotherName,MotherMobile,MotherDateOfBirth,MotherEmail,MotherQualification,MotherOccupation,MotherDesignation,MotherOrganization,Mobile,SectionId,DOB,DOR,DOE,Landline,AlternateMobile,PresentAddress,PermanentAddress,BloodGroup,Caste,Category,Gender,Nationality,Username,DOL,DOLUsername,DOD,DODUsername,DateOfTermination,TerminationReason,TerminationRemarks,DOT,SSSMID,Family_SSSMID,Aadhar_No FROM registration");
     $items = mysqli_query($CONNECTION, "SELECT StudentName,FatherName,MotherName,SSSMID,Family_SSSMID,Aadhar_No,Bank_Account_Number,IFSC_Code,
@@ -5160,6 +5160,7 @@ elseif ($Action == "ExportStudentData") {
             $row['Mobile'], $row['Class'], $row['Gender'], $row['DOR']);
         fputcsv($file, $data);
     }
+}
     fclose($file);
     $file = 'studentData.csv';
 
@@ -5198,13 +5199,9 @@ elseif ($Action == "ExportStudentData") {
             }
             fclose($handle);
         }
-
-
-
         $heading = array();
         $rheading = $heading = $dataFileArr[0];
 
-        // /*
         $required_key = array();
         $required_key[] = array_search('StudentName', $heading);
         $required_key[] = array_search('FatherName', $heading);
@@ -5219,8 +5216,6 @@ elseif ($Action == "ExportStudentData") {
         $required_key[] = array_search('Gender', $heading);
         $required_key[] = array_search('DOR', $heading);
         $required_key[] = array_search('DORaa', $heading);
-        //* 
-        //*/
         krsort($rheading);
 
         //remove all other value (field which are no longer need)
@@ -5247,15 +5242,40 @@ elseif ($Action == "ExportStudentData") {
                 $tableDataArr[] = $cell;
             }
         }
-        
+
         $update_record = $insert_record = 0;
         foreach ($tableDataArr as $mpn => $tableData) {
-            array_walk($_POST, "FilterSqlInjection");
-            $check_query = mysql_query("SELECT RegistrationId FROM `registration` WHERE `StudentName`='" . $tableData[$required_key[0]] . "' AND `FatherName`='".$tableData[$required_key[1]]."' AND Mobile='".$tableData[$required_key[7]]."' LIMIT 1; ");
-
-            if (mysql_num_rows($check_query) > 0) {
-                $check_query_data = mysql_fetch_array($check_query);
-                $update = mysql_query("UPDATE `registration` SET StudentName='" . $tableData[$required_key[0]] . "',
+            if(isset($tableData[$required_key[0]]) && isset($tableData[$required_key[1]]) && isset($tableData[$required_key[8]]) && $tableData[$required_key[0]]!='' && $tableData[$required_key[1]]!='' && $tableData[$required_key[8]]!=''){
+            array_walk($tableData, "FilterSqlInjection");
+            /*
+             *For Getting the class detain and if class not exist than added into database
+             * */
+            $check_class = mysqli_query($CONNECTION,"select SectionId from class,section where 
+                                        class.ClassId=section.ClassId and class.ClassStatus='Active' and
+                                        section.SectionStatus='Active' and class.Session='$CURRENTSESSION' AND CONCAT(ClassName,'-',SectionName)='".$tableData[$required_key[9]]."' order by ClassName LIMIT 1;");
+           
+            if(mysqli_num_rows($check_class)>0){ // if data Found get the section id and insert it into database
+               $class_row=  mysqli_fetch_row($check_class);
+               $tableData[$required_key[9]]=$class_row[0];
+            }else{ // if data not found then we go to add first 
+                $class_section=explode('-', $tableData[$required_key[9]]);
+                if(count($class_section)>1){
+                    $ClassName=$class_section[0];
+                    $SectionName=$class_section[1];
+                    $DOE = strtotime($Date);
+                    $classAddQuery=mysqli_query($CONNECTION,"insert into class(ClassName,Session,ClassStatus,DOE) values('$ClassName','$CURRENTSESSION','Active','$DOE') ");
+                    $ClassId=mysqli_insert_id($CONNECTION);
+                    $sectionAddQuery=mysqli_query($CONNECTION,"insert into section(SectionName,ClassId,SectionStatus,DOE) values('$SectionName','$ClassId','Active','$DOE')");
+                    $tableData[$required_key[9]]=mysqli_insert_id($CONNECTION);
+                 }
+            }
+            $tableData[$required_key[11]]=  strtotime($tableData[$required_key[11]]);
+            $tableData[$required_key[10]]=GetCategoryId('Gender',$tableData[$required_key[10]]);
+            $check_query = mysqli_query($CONNECTION,"SELECT RegistrationId FROM `registration` WHERE `StudentName`='" . $tableData[$required_key[0]] . "' AND `FatherName`='".$tableData[$required_key[1]]."' AND Mobile='".$tableData[$required_key[8]]."' LIMIT 1; ");
+            
+            if (mysqli_num_rows($check_query) > 0) {
+                $check_query_data = mysqli_fetch_array($check_query);
+                $update = mysqli_query($CONNECTION,"UPDATE `registration` SET StudentName='" . $tableData[$required_key[0]] . "',
                         `FatherName`='" . $tableData[$required_key[1]] . "',
                         `MotherName`='" . $tableData[$required_key[2]] . "',
                         `SSSMID`='" . $tableData[$required_key[3]] . "',
@@ -5264,15 +5284,19 @@ elseif ($Action == "ExportStudentData") {
                         `Bank_Account_Number`='" . $tableData[$required_key[6]] . "',
                         `IFSC_Code`='" . $tableData[$required_key[7]] . "',
                         `Mobile`='" . $tableData[$required_key[8]] . "',
-                        `Class`='" . $tableData[$required_key[9]] . "',
+                        `SectionId`='" . $tableData[$required_key[9]] . "',
                         `Gender`='" . $tableData[$required_key[10]] . "',
                         `DOR`='" . $tableData[$required_key[11]] . "'
                         WHERE `RegistrationId`=" . $check_query_data['RegistrationId']);
                 $update_record++;
             } else {
-                $insert = mysql_query("INSERT INTO `registration` 
-                        (`StudentName`,`FatherName`, `MotherName`, `SSSMID`,`Family_SSSMID`, `Aadhar_No`, `Bank_Account_Number`,`IFSC_Code`, `Mobile`, `Class`,`Gender`, `DOR`) 
-                        VALUES ('" . $tableData[$required_key[0]] . "',
+                
+                $insert = mysqli_query($CONNECTION,"INSERT INTO `registration` 
+                        (`Status`,`Session`,`StudentName`,`FatherName`, `MotherName`, `SSSMID`,`Family_SSSMID`, `Aadhar_No`, `Bank_Account_Number`,`IFSC_Code`, `Mobile`, `SectionId`,`Gender`, `DOR`) 
+                        VALUES (
+                        'NotAdmitted',
+                        '" . $CURRENTSESSION . "',
+                        '" . $tableData[$required_key[0]] . "',
                         '" . $tableData[$required_key[1]] . "',
                         '" . $tableData[$required_key[2]] . "',
                         '" . $tableData[$required_key[3]] . "',
@@ -5287,10 +5311,14 @@ elseif ($Action == "ExportStudentData") {
                 $insert_record++;
             }
         }
+        }
 
         echo "Record Updated: $update_record <br>";
         echo "Record Inserted:$insert_record <br>";
         echo 'Success';
+        echo '<a href="Registration" id="RegistrationLink"><span class="icon16 icomoon-icon-license"></span>Click for back to ';
+        echo Translate('Registration');
+        echo '</a>';
     }
 }
 ///////////////////////////////////////////////////////////////////////////////////////////

@@ -343,3 +343,9 @@ RewriteRule ^Note/([A-Za-z0-9\-]+)/([A-Za-z0-9\-]+)$ Note.php?NoteType=$1&NoteId
 RewriteRule ^Note/([A-Za-z0-9\-]+)/([A-Za-z0-9\-]+)/$ Note.php?NoteType=$1&NoteId=$2
 RewriteRule ^Response$ Response.php
 RewriteRule ^Response/$ Response.php
+RewriteRule ^StudentListing$ StudentListing.php
+RewriteRule ^StudentListing$/$ StudentListing.php
+RewriteRule ^PreStudentPrint$ PreStudentPrint.php
+RewriteRule ^PreStudentPrint$/$ PreStudentPrint.php
+RewriteRule ^StudentPrint StudentPrint.php
+RewriteRule ^StudentPrint/$ StudentPrint.php

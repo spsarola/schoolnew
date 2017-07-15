@@ -177,18 +177,25 @@ include("Template/Sidebar.php");
                                 <form action="Action" name="ExportStudentData" id="ExportStudentData" method="Post">
                                     <input type="hidden" name="RandomNumber" value="<?php echo $TOKEN; ?>" readonly>
                                     <input type="hidden" name="Action" value="ExportStudentData" readonly>
-                                    <button type="submit" tabindex="7" class="btn btn-info">Export CSV</button>
+                                    <button type="submit" class="btn btn-info">Export CSV</button>
                                 </form>
                             </div>
-                            <div class="span8">
+                            <div class="span6">
                                 <form action="Action" name="ImportStudentData" id="ImportStudentData" method="Post" enctype="multipart/form-data">
                                     <input type="hidden" name="RandomNumber" value="<?php echo $TOKEN; ?>" readonly>
                                     <input type="hidden" name="Action" value="ImportStudentData" readonly>
                                     <input type="file" name="csv_file" id="file" size="20" style="opacity: 0;">
-                                    <button type="submit" tabindex="7" class="btn btn-info">Import CSV</button>
+                                    <button type="submit" class="btn btn-info">Import CSV</button>
                                 </form>
                             </div>
-
+                            <div class="span2">  
+                                <form action="Action" name="ExportStudentDataBlank" id="ExportStudentData" method="Post">
+                                    <input type="hidden" name="RandomNumber" value="<?php echo $TOKEN; ?>" readonly>
+                                    <input type="hidden" name="Action" value="ExportStudentData" readonly>
+                                    <input type="hidden" name="blankcsv" value="blankcsv" readonly>
+                                    <button type="submit" class="btn blankbtn-info">Format CSV</button>
+                                </form>
+                            </div>
                         </div>    
                     </div>    
                 </div>    

@@ -81,7 +81,7 @@ $students_result=mysqli_query($CONNECTION, $query);
                                             <td><?php echo $Gender ?></td>
                                             <td><?php echo $Category ?></td>
                                             <td>
-                                                <form class="form-horizontal" action="PreStudentPrint.php" name="StudentPrint" id="StudentPrint" target="_blank" method="Post">
+                                                <form class="form-horizontal" action="PreStudentPrint" name="StudentPrint" id="StudentPrint" target="_blank" method="Post">
                                                     <input type="hidden" name="RandomNumber" value="<?php echo $TOKEN; ?>" readonly>
                                                     <input type="hidden" name="Action" value="PreStudentPrint" readonly>
                                                     <input type="hidden" name="UniqueId" value="<?php echo $RegistrationId; ?>" readonly>

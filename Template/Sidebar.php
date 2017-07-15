@@ -45,6 +45,7 @@
                                 <li><a href="Admission" id="AdmissionLink"><span class="icon16 icomoon-icon-stack"></span><?php echo Translate('Admission'); ?></a></li>
                                 <li><a href="Promotion"><span class="icon16 icomoon-icon-graduation"></span><?php echo Translate('Promotion'); ?></a></li>
                                 <li><a href="UpdateFee"><span class="icon16 icomoon-icon-pencil"></span><?php echo Translate('Update Fee'); ?></a></li>	
+                                <li><a href="StudentListing"><span class="icon16 icomoon-icon-pencil"></span><?php echo Translate('Student Listing'); ?></a></li>
 								<li><a href="#" ><span class="icon16 icomoon-icon-cube"></span><?php echo Translate('Reports'); ?></a>
                                      <ul class="sub">
                                         <li><a href="AdmissionReport"><span class="icon16 icomoon-icon-arrow-right-2"></span><?php echo Translate('Admission Report'); ?></a></li>

@@ -1,5 +1,2 @@
 StudentName,FatherName,MotherName,SSSMID,Family_SSSMID,Aadhar_No,Bank_Account_Number,IFSC_Code,Mobile,Class,Gender,DOR
-"ANAMIKA DEN","DEVENDRA SEN",AARTI,"=""123456789""","=""123456789""","=""123456789""","=""1234567890""","=""ifc123456""","=""8120088827""",3-A,Female,13/06/2017
-test,hghg,vh,"=""""","=""""","=""""","=""""","=""""","=""8978977867""",5-A,Male,14/06/2017
-"test 3","father 3","mother 3","=""""","=""""","=""""","=""""","=""""","=""7897897890""",LKG-A,Male,15/06/2017
-rahul,daru,madhu,"=""232444455""","=""6546666""","=""876543355667""","=""65678788897666""","=""sbin8786666""","=""9879756545""",1-A,Female,08/06/2017
+ANAMIKA DEN,DEVENDRAddd SENnn,AARTI,1111111,22222222222,123456789,555555555,ifc123456,8120088827,9-A,Female,13-06-2017

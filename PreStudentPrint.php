@@ -28,7 +28,7 @@ $query = "SELECT RegistrationId,Session,Status,StudentName,FatherName,FatherMobi
             $UniqueId=$_POST['UniqueId']
         ?>
             
-        <form class="form-horizontal" action="StudentPrint.php" name="StudentPrint" id="printDetailForm" method="Post" target="_blank">
+        <form class="form-horizontal" action="StudentPrint" name="StudentPrint" id="printDetailForm" method="Post" target="_blank">
         <div class="row-fluid">
             <div class="span12">
                 <div class="box chart gradient">
@@ -352,7 +352,7 @@ $query = "SELECT RegistrationId,Session,Status,StudentName,FatherName,FatherMobi
 <script>
     $("#printDetailForm").submit(function() {
         $("input[type='checkbox']").removeAttr("disabled");
-        $("input[type='checkbox']").prop("checked","checked");
+        //$("input[type='checkbox']").prop("checked","checked");
     });
 </script>
 <?php

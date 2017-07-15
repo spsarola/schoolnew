@@ -139,6 +139,7 @@ function Confirmation() {
 }
 
 function GetCategoryId($Name, $Value) {
+    global $CONNECTION;
     $check = mysqli_query($CONNECTION, "select MasterEntryId from masterentry where MasterEntryName='$Name' and MasterEntryValue='$Value' ");
     $count = mysqli_num_rows($check);
     if ($count == 0)
